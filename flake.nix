@@ -20,6 +20,7 @@
       modules = [ 
         ./configuration.nix
       ];
+      specialArgs = {};
     };
 
   };

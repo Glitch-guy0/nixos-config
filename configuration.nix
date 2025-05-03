@@ -16,7 +16,7 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "unknown"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -87,18 +87,33 @@
         description = "glitch";
         extraGroups = [ "networkmanager" "wheel" "docker" ];
         packages = with pkgs; [
+            # Browsers and Applications
             anki
             brave
-            code-cursor
-            docker-compose
-            docker_28
-            file
             obsidian
+
+            # Development Tools
+            code-cursor
             python3Full
-            syncthing
-            virtualbox
             vscode
             vscode-extensions.ms-python.python
+
+            # File Sync
+            syncthing
+
+            # System Tools
+            file
+
+            # System Tools & Monitoring
+            auto-cpufreq
+            coolercontrol.coolercontrol-gui
+            coolercontrol.coolercontrold
+            powertop
+
+            # Virtualization & Containers
+            docker-compose
+            docker_28
+            virtualbox
         ];
     };
   };
@@ -115,8 +130,13 @@
     dataDir = "/home/glitch";
   };
 
-  # Install firefox.
-  # programs.firefox.enable = true;
+  # Power Management Services
+  powerManagement.powertop.enable = true;
+  programs.coolercontrol.enable = true;
+  # Conflicts
+  services.auto-cpufreq.enable = true;
+  services.power-profiles-daemon.enable = false;
+  # end of conflicts
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -124,9 +144,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     git
-  #  wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
