@@ -114,6 +114,17 @@
           ]
         );
       };
+      hyprUser = {
+        isNormalUser = true;
+        initialPassword = "hypr";
+        description = "hyprland testing user";
+        extraGroups = [ "networkmanager" "wheel" ];
+        packages = with unstablepkgs; [
+          home-manager
+          vscode
+          brave
+        ];
+      };
     };
   };
 
