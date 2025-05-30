@@ -2,11 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, unstablepkgs, ... }@inputs:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -61,7 +62,7 @@
   # services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -71,12 +72,14 @@
   };
 
   users = {
-    users.glitch = {
+    users = {
+      glitch = {
         isNormalUser = true;
         initialPassword = "user";
         description = "glitch";
         extraGroups = [ "networkmanager" "wheel" "docker" ];
-        packages = with pkgs; [
+        packages = 
+          with pkgs; [
             # Browsers and Applications
             anki
             brave
@@ -85,8 +88,6 @@
             # Development Tools
             code-cursor
             python3Full
-            vscode
-            vscode-extensions.ms-python.python
 
             # File Sync
             syncthing
@@ -106,7 +107,13 @@
             docker-compose
             docker_28
             virtualbox
-        ];
+          ] ++ (with unstablepkgs;[
+            # IDE
+            vscode
+            vscode-extensions.ms-python.python
+          ]
+        );
+      };
     };
   };
 
@@ -122,6 +129,15 @@
     dataDir = "/home/glitch";
   };
 
+  # # clight config ***
+  # services.clight.enable = true;
+  # location = {
+  #   latitude = 0.0;
+  #   longitude = 0.0;
+  # };
+  # # *******
+
+  
   # Power Management Services
   powerManagement.powertop.enable = true;
   programs.coolercontrol.enable = true;
