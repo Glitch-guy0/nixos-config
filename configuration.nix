@@ -123,6 +123,19 @@
           home-manager
           vscode
           brave
+            hyprland
+            hyprpaper
+            hyprlock
+            hypridle
+            waybar
+            wofi
+            xdg-desktop-portal-hyprland
+            grim
+            slurp
+            swappy
+            wl-clipboard
+            mako
+            swww
         ];
       };
     };
