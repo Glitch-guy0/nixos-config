@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  apicurio-studio:
+    image: quay.io/apicurio/apicurio-studio:1.0.0.Beta1
+    ports:
+      - "8080:8080"
+
+  apicurio-studio-ui:
+    image: quay.io/apicurio/apicurio-studio-ui:1.0.0.Beta1
+    ports:
+      - "8888:8080"
