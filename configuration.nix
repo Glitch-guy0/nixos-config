@@ -8,7 +8,7 @@
   imports =
     [ 
       # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      ./hardware.nix
     ];
 
   # Bootloader.
@@ -83,11 +83,12 @@
             # Browsers and Applications
             anki
             brave
-            obsidian
+            # obsidian
 
             # Development Tools
             code-cursor
-            python3Full
+            uv
+            nodejs_24
 
             # File Sync
             syncthing
@@ -105,12 +106,12 @@
 
             # Virtualization & Containers
             docker-compose
-            docker_28
-            virtualbox
+            docker
+            # virtualbox
           ] ++ (with unstablepkgs;[
             # IDE
             vscode
-            vscode-extensions.ms-python.python
+            windsurf
           ]
         );
       };
