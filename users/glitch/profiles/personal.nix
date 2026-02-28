@@ -1,12 +1,12 @@
-# users/alice/profiles/minimal.nix
+# users/glitch/profiles/personal.nix
 # ============================================================
-# PURPOSE:   Alice's minimal profile. Base only.
+# PURPOSE:   Glitch's personal profile.
 # SCOPE:     user
 # ============================================================
 { lib, pkgs, ... }:
 {
   imports = [
-    ../../../profiles/minimal.nix
+    ../../../profiles/base.nix
     ../secrets.nix
   ];
 

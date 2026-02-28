@@ -1,5 +1,5 @@
 # ============================================================
-# PURPOSE:   Custom glitch-os derivative.
+# PURPOSE:   Custom unknown-os derivative.
 # SCOPE:     global
 # ============================================================
 { inputs, nixpkgs }:
@@ -8,6 +8,6 @@ let
 in
 lib.mkDerivation {
   inherit inputs nixpkgs;
-  name = "glitch-os";
-  baseHost = "glitch";
+  name = "unknown-os";
+  baseHost = "unknown";
 }

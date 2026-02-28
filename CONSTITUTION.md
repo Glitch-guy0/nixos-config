@@ -9,7 +9,7 @@
 
 | Decision | Value | Rationale |
 |---|---|---|
-| First hostname | `glitch` | User-defined |
+| First hostname | `unknown` | User-defined |
 | Multi-machine | Yes (different hardware) | Per-host hardware abstraction needed |
 | Secret strategy | **Age only** | Simple, portable, no keyring daemon |
 | Home Manager | Non-root, standalone flake input | No privilege escalation for user config |
@@ -190,4 +190,4 @@ Maintenance script?           ──► scripts/<category>/ + document in script
 
 ---
 
-*Canvas v1.1.0 — hostname: glitch — age-only secrets — user@profile flake keys — intermediate users/flake.nix — scripts section — host config.nix environment selector — split documentation model*
+*Canvas v1.1.0 — hostname: unknown — age-only secrets — user@profile flake keys — intermediate users/flake.nix — scripts section — host config.nix environment selector — split documentation model*

@@ -1,7 +1,7 @@
 # ============================================================
 # PURPOSE:   Wraps a SOPS age secret reference with scope metadata.
 # SCOPE:     shared
-# USAGE:     lib.mkSecret { name = "api-key"; scope = "user"; owner = "alice"; }
+# USAGE:     lib.mkSecret { name = "api-key"; scope = "user"; owner = "glitch"; }
 # ============================================================
 { name, scope, owner ? null, path ? null }:
 {

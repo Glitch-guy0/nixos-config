@@ -1,5 +1,5 @@
 # ============================================================
-# PURPOSE:   Networking and firewall configuration for glitch.
+# PURPOSE:   Networking and firewall configuration for unknown.
 # SCOPE:     host
 # ============================================================
 { config, lib, pkgs, ... }:

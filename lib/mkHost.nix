@@ -1,7 +1,7 @@
 # ============================================================
 # PURPOSE:   Standard wrapper for declaring a NixOS host.
 # SCOPE:     global/system
-# USAGE:     lib.mkHost { hostname = "glitch"; system = "x86_64-linux"; }
+# USAGE:     lib.mkHost { hostname = "unknown"; system = "x86_64-linux"; }
 # EXTENDS:   Add new specialArgs keys for new cross-cutting system concerns.
 # ============================================================
 { inputs, nixpkgs, ... }:

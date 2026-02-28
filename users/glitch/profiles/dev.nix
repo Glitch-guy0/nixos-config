@@ -1,6 +1,6 @@
-# users/alice/profiles/dev.nix
+# users/glitch/profiles/dev.nix
 # ============================================================
-# PURPOSE:   Alice's full development environment.
+# PURPOSE:   Glitch's full development environment.
 # SCOPE:     user
 # ============================================================
 { lib, pkgs, ... }:

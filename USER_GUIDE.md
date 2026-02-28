@@ -1,6 +1,6 @@
-# Glitch NixOS User Guide
+# Unknown NixOS User Guide
 
-Welcome to the **Glitch OS** user guide! This manual is designed for end-users who want to install, configure, and maintain this NixOS system. It will walk you through setting up a new machine, switching your desktop profiles, and handling encrypted secrets safely.
+Welcome to the **Unknown OS** user guide! This manual is designed for end-users who want to install, configure, and maintain this NixOS system. It will walk you through setting up a new machine, switching your desktop profiles, and handling encrypted secrets safely.
 
 *(Note: If you are an automated agent, maintainer, or developer looking to extend the codebase, please refer to [CONSTITUTION.md](./CONSTITUTION.md) and the `docs/` folder instead.)*
 
@@ -10,7 +10,7 @@ Welcome to the **Glitch OS** user guide! This manual is designed for end-users w
 1. [Prerequisites](#1-prerequisites)
 2. [Initial Setup & Installation](#2-initial-setup--installation)
    - [Cloning the Repository](#cloning-the-repository)
-   - [Setting Up a New Host (If not Glitch)](#setting-up-a-new-host-if-not-glitch)
+   - [Setting Up a New Host (If not Unknown)](#setting-up-a-new-host-if-not-unknown)
    - [Generating Age Keys for Secrets](#generating-age-keys-for-secrets)
    - [Installing NixOS](#installing-nixos)
 3. [Day-to-Day Usage](#3-day-to-day-usage)
@@ -37,8 +37,8 @@ git clone https://github.com/your-username/nixos-config.git
 cd nixos-config
 ```
 
-### Setting Up a New Host (If not Glitch)
-This repository ships with a pre-configured host named `glitch` (HP Pavilion 14-dv0054tu). If you are installing this on different hardware, you must create a new hardware profile:
+### Setting Up a New Host (If not Unknown)
+This repository ships with a pre-configured host named `unknown` (HP Pavilion 14-dv0054tu). If you are installing this on different hardware, you must create a new hardware profile:
 ```bash
 # Generate your machine's unique hardware config
 nixos-generate-config --show-hardware-config > hosts/your-hostname/hardware-configuration.nix
@@ -57,23 +57,23 @@ To generate a key for a new host:
 ### Installing NixOS
 If you are installing onto formatted disks (e.g., mounted at `/mnt`), deploy the flake:
 ```bash
-sudo nixos-install --flake .#glitch
+sudo nixos-install --flake .#unknown
 ```
-*(Replace `glitch` with your new hostname if applicable.)*
+*(Replace `unknown` with your new hostname if applicable.)*
 
 ---
 
 ## 3. Day-to-Day Usage
 
 ### System Updates & Rebuilding
-When you modify system-level configurations (e.g., changing the desktop environment in `hosts/glitch/config.nix`), you must rebuild the system as root:
+When you modify system-level configurations (e.g., changing the desktop environment in `hosts/unknown/config.nix`), you must rebuild the system as root:
 
 ```bash
 # Apply changes and switch to them immediately
-sudo nixos-rebuild switch --flake .#glitch
+sudo nixos-rebuild switch --flake .#unknown
 
 # Test build without switching (useful to check for syntax errors)
-sudo nixos-rebuild build --flake .#glitch
+sudo nixos-rebuild build --flake .#unknown
 ```
 
 ### Switching User Profiles (Home Manager)
@@ -81,16 +81,16 @@ User applications and shell environments are managed via **Home Manager profiles
 
 To switch your profile (no root required), use the format `user@profile`:
 ```bash
-# Switch to Alice's work profile
-home-manager switch --flake .#alice@work
+# Switch to Glitch's work profile
+home-manager switch --flake .#glitch@work
 
-# Switch to Alice's personal profile
-home-manager switch --flake .#alice@personal
+# Switch to Glitch's personal profile
+home-manager switch --flake .#glitch@personal
 ```
 
 *Tip for Testing:* If you want to test a profile quickly without touching the system registry, you can use the standalone intermediate flake:
 ```bash
-home-manager switch --flake ./users#alice@dev
+home-manager switch --flake ./users#glitch@dev
 ```
 
 ---

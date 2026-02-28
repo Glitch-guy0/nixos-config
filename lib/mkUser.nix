@@ -1,7 +1,7 @@
 # ============================================================
 # PURPOSE:   Standard wrapper for a user+profile Home Manager configuration.
 # SCOPE:     user
-# USAGE:     lib.mkUser { username = "alice"; profile = "work"; }
+# USAGE:     lib.mkUser { username = "glitch"; profile = "work"; }
 # EXTENDS:   Add new extraSpecialArgs for new cross-cutting user concerns.
 # ============================================================
 { inputs, nixpkgs, ... }:

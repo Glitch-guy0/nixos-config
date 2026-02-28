@@ -7,7 +7,7 @@
 #            Never put business logic in this file — delegate to lib/.
 # ============================================================
 {
-  description = "glitch — composable multi-machine NixOS configuration";
+  description = "unknown — composable multi-machine NixOS configuration";
 
   inputs = {
     # ── Core ──────────────────────────────────────────────────────
@@ -55,10 +55,10 @@
       flake = let
         lib = import ./lib nixpkgs.lib;
       in {
-        # key: hostname — nixos-rebuild switch --flake .#glitch
+        # key: hostname — nixos-rebuild switch --flake .#unknown
         nixosConfigurations = import ./hosts inputs;
 
-        # key: "user@profile" — home-manager switch --flake .#alice@work
+        # key: "user@profile" — home-manager switch --flake .#glitch@work
         homeConfigurations  = import ./users inputs;
 
         # Custom packages + derivative ISOs

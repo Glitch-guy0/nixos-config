@@ -4,7 +4,7 @@
 # ============================================================
 { config, lib, inputs, ... }:
 {
-  sops.defaultSopsFile = ../../secrets/hosts/glitch.yaml;
+  sops.defaultSopsFile = ../../secrets/hosts/unknown.yaml;
   sops.age.keyFile = "/root/.config/sops/age/keys.txt"; # Ensure scripts generate key to this path
 
   # Example secret declaration

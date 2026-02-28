@@ -1,7 +1,7 @@
 # ============================================================
 # PURPOSE:   Build a distributable NixOS derivative/ISO from this config.
 # SCOPE:     global
-# USAGE:     lib.mkDerivation { name = "glitch-os"; baseHost = "glitch"; }
+# USAGE:     lib.mkDerivation { name = "unknown-os"; baseHost = "unknown"; }
 # EXTENDS:   Pass extraModules for branding/package overrides.
 # AGENT:     Derivatives MUST NOT modify hosts/, modules/, or lib/.
 #            All derivative logic lives in pkgs/derivatives/<n>/.

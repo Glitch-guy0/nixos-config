@@ -1,6 +1,6 @@
-# users/alice/profiles/work.nix
+# users/glitch/profiles/work.nix
 # ============================================================
-# PURPOSE:   Alice's work profile — developer tools + work-specific config.
+# PURPOSE:   Glitch's work profile — developer tools + work-specific config.
 # SCOPE:     user
 # DEPENDS:   profiles/developer.nix, modules/home/tools/git.nix
 # EXTENDS:   Add work tools to home.packages. Override options sparingly.
@@ -12,11 +12,11 @@
     ../secrets.nix
   ];
 
-  # programs.git.userEmail = "alice@company.com";
+  # programs.git.userEmail = "glitch@company.com";
   # home.packages = with pkgs; [ slack zoom-us ];
 
   # sops.secrets."work-vpn-key" = {
-  #   sopsFile = ../../../secrets/users/alice.yaml;
+  #   sopsFile = ../../../secrets/users/glitch.yaml;
   #   key      = "vpn-key";
   # };
 

@@ -32,5 +32,5 @@ flake.nix  (root entry point — no logic, all delegation)
        └─ lib  (mkHost · mkUser · mkSecret · mkDerivation · importDir)
 
 users/flake.nix  (intermediate — standalone HM without system)
-  └─ home-manager switch --flake users/#alice@work
+  └─ home-manager switch --flake users/#glitch@work
 ```

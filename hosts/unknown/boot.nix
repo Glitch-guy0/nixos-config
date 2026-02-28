@@ -1,5 +1,5 @@
 # ============================================================
-# PURPOSE:   Bootloader, initrd, and kernel parameters for glitch.
+# PURPOSE:   Bootloader, initrd, and kernel parameters for unknown.
 # SCOPE:     host
 # ============================================================
 { config, lib, pkgs, ... }:
