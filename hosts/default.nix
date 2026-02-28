@@ -13,7 +13,7 @@ in
     name = hostname;
     value = lib.mkHost {
       inherit inputs;
-      nixpkgs = inputs.nixpkgs;
+      inherit (inputs) nixpkgs;
     } {
       inherit hostname;
     };

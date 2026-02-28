@@ -34,8 +34,7 @@ let
         builtins.listToAttrs (map ({ user, profile }: {
           name = "${user}@${profile}";
           value = lib.mkUser {
-            inherit inputs;
-            nixpkgs = inputs.nixpkgs;
+            inherit inputs nixpkgs;
           } {
             inherit profile system;
             username = user;
