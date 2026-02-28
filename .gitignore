@@ -1,0 +1,11 @@
+result/
+.direnv/
+.devenv/
+secrets/**/*.yaml
+!secrets/.sops.yaml
+node_modules/
+dist/
+build/
+target/
+.DS_Store
+*.swp
