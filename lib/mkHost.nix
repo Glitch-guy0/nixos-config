@@ -5,7 +5,7 @@
 # EXTENDS:   Add new specialArgs keys for new cross-cutting system concerns.
 # ============================================================
 { inputs, nixpkgs, ... }:
-{ hostname
+{ hostname ? "unknown"
 , system      ? "x86_64-linux"
 , modules     ? []
 , specialArgs ? {}

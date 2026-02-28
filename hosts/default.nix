@@ -11,5 +11,10 @@ let
 in
   builtins.listToAttrs (map (hostname: {
     name = hostname;
-    value = lib.mkHost { inherit inputs hostname; nixpkgs = inputs.nixpkgs; };
+    value = lib.mkHost {
+      inherit inputs;
+      nixpkgs = inputs.nixpkgs;
+    } {
+      inherit hostname;
+    };
   }) hostDirs)

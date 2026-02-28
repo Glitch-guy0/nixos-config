@@ -9,13 +9,18 @@
   ];
 
   # Intel 11th Gen specific setup
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  hardware.enableRedistributableFirmware = true;
+  hardware = {
+    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    enableRedistributableFirmware = true;
+    firmware = [ pkgs.sof-firmware ];
+  };
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" "iwlwifi" ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
+    initrd.kernelModules = [ ];
+    kernelModules = [ "kvm-intel" "iwlwifi" ];
+    extraModulePackages = [ ];
+  };
 
   # Note: 512GB PCIe NVMe M.2 SSD
   fileSystems."/" = {
@@ -36,7 +41,6 @@
   ];
 
   # Bang & Olufsen Audio requires SOF firmware
-  hardware.firmware = [ pkgs.sof-firmware ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

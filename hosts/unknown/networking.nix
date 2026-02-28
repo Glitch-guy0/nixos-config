@@ -5,10 +5,12 @@
 { config, lib, pkgs, ... }:
 {
   # HP Pavilion network management
-  networking.networkmanager.enable = true;
+  networking = {
+    networkmanager.enable = true;
 
-  # Firewall settings
-  networking.firewall.enable = true;
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+    # Firewall settings
+    firewall.enable = true;
+    # firewall.allowedTCPPorts = [ ... ];
+    # firewall.allowedUDPPorts = [ ... ];
+  };
 }

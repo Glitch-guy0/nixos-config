@@ -10,8 +10,7 @@
 #            Do NOT put hardware-specific config here — that belongs in
 #            hardware-configuration.nix.
 # ============================================================
-{ ... }:
-{
+_: {
   # ── Display / Desktop Environment ─────────────────────────
   display.server = "hyprland";    # hyprland | gnome | kde | none
 

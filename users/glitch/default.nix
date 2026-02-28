@@ -4,13 +4,14 @@
 # ============================================================
 { config, lib, pkgs, ... }:
 {
-  home.username = "glitch";
-  home.homeDirectory = "/home/glitch";
-
-  home.packages = with pkgs; [
-    brave
-    zed-editor
-  ];
+  home = {
+    username = "glitch";
+    homeDirectory = "/home/glitch";
+    packages = with pkgs; [
+      brave
+      zed-editor
+    ];
+  };
 
   # Note: In a real system you'd also define the NixOS user in a system module
   # users.users.glitch = { ... }
