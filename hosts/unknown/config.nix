@@ -25,7 +25,5 @@ _: {
   hardware.gpu   = "intel";       # nvidia | amd | intel | none
 
   # ── Optional Feature Flags ────────────────────────────────
-  features.virtualization = true;
-  features.bluetooth      = true;
-  features.printing       = false;
+  # Features are not defined in modules yet
 }
