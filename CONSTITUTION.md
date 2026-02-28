@@ -18,6 +18,7 @@
 | nixpkgs track | `nixos-unstable` | Disco — latest |
 | Custom derivatives | Yes — first-class | See Section 9 |
 | Flake access | `user@profile` / hostname convention | Clean CLI ergonomics |
+| **Documentation** | Split | `USER_GUIDE.md` for end-users. `docs/` for coding agents/maintainers. |
 
 ---
 
@@ -42,7 +43,30 @@
 ---
 
 ## 2. Full File & Directory Structure
-*(See source for full structure tree)*
+
+```
+nixos-config/
+│
+├── flake.nix                        # Root flake. All inputs. Delegates outputs to lib/.
+├── flake.lock                       # Locked inputs. Always commit this.
+│
+├── CONSTITUTION.md                  # This file. Read before touching anything.
+├── USER_GUIDE.md                    # End-user setup, installation, and day-to-day usage guide.
+├── ARCHITECTURE.md                  # Data flow, module graph, secrets topology.
+├── CONTRIBUTING.md                  # Pre/post change checklists, style guide.
+├── CHANGELOG.md                     # Human-readable change log, semver tagged.
+│
+├── docs/                            # EXCLUSIVELY FOR AGENTS & MAINTAINERS modifying the project folder structure.
+│   ├── adding-a-host.md             # Step-by-step: new machine setup
+│   ├── adding-a-user.md             # Step-by-step: new user + profiles
+│   ├── adding-a-module.md           # Step-by-step: new system or home module
+│   ├── adding-a-profile.md          # Step-by-step: new capability bundle
+│   ├── secrets-management.md        # Age keys, sops workflow, rotation
+│   ├── profile-switching.md         # How to build/switch profiles via CLI
+│   └── derivatives.md               # Building and distributing custom derivatives
+│
+```
+*(The rest of the structure remains as standard: `lib/`, `hosts/`, `modules/`, `profiles/`, `users/`, `secrets/`, `scripts/`, `overlays/`, `pkgs/`, `.github/`)*
 
 ---
 
@@ -122,13 +146,48 @@ options.module.enable = lib.mkOption {
 ---
 
 ## 14. Agent Quick Reference
-*(See source)*
+
+**Before any edit:**
+1. Read `PURPOSE` + `AGENT` header of every file you're touching.
+2. Check `DEPENDS` — understand the chain before pulling threads.
+3. Check `docs/` for specific workflow rules.
+4. Run `scripts/check.sh` — know the baseline state.
+
+**Where does new code go?**
+```
+System-wide service/driver?   ──► modules/system/    or  hosts/<n>/
+User-facing tool/config?      ──► modules/home/       or  users/<n>/profiles/
+Capability bundle?            ──► profiles/
+Helper / utility function?    ──► lib/
+Custom package?               ──► pkgs/
+Distributable ISO/config?     ──► pkgs/derivatives/
+Secret value?                 ──► secrets/<scope>/  + update .sops.yaml
+Maintenance script?           ──► scripts/<category>/ + document in scripts/README.md
+```
+
+**After any edit:**
+1. Update the file's `AGENT` comment if editing context changed.
+2. Run `scripts/check.sh`.
+3. Add `CHANGELOG.md` entry: `[date] <scope>: what changed and why`.
+4. New file added → register in nearest `default.nix` or use `importDir`.
+5. `.sops.yaml` changed → run `scripts/sops/rekey-all.sh`.
 
 ---
 
 ## 15. docs/ Reference Guide
-*(See source)*
+
+*NOTE: This folder is exclusively for agents, maintainers, and contributors modifying the underlying code structure, NOT for end-users. End-users should refer to `USER_GUIDE.md`.*
+
+| File | Covers |
+|---|---|
+| `docs/adding-a-host.md` | Dir scaffold → hardware-config → gen-age-key → sops rule → rebuild test |
+| `docs/adding-a-user.md` | Dir scaffold → profiles → age key → secrets file → flake output |
+| `docs/adding-a-module.md` | system vs home decision → mkOption pattern → default.nix registration |
+| `docs/adding-a-profile.md` | Capability bundle pattern → composition → user profile import |
+| `docs/secrets-management.md` | Age key gen → .sops.yaml rules → create/edit/rotate → scripts guide |
+| `docs/profile-switching.md` | CLI commands → build vs switch → test without activating |
+| `docs/derivatives.md` | mkDerivation → ISO build → derivative rules → distribution |
 
 ---
 
-*Canvas v1.1.0 — hostname: glitch — age-only secrets — user@profile flake keys — intermediate users/flake.nix — scripts section — host config.nix environment selector*
+*Canvas v1.1.0 — hostname: glitch — age-only secrets — user@profile flake keys — intermediate users/flake.nix — scripts section — host config.nix environment selector — split documentation model*
