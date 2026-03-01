@@ -11,10 +11,15 @@ let
 in
   builtins.listToAttrs (map (hostname: {
     name = hostname;
-    value = lib.mkHost {
-      inherit inputs;
-      inherit (inputs) nixpkgs;
-    } {
-      inherit hostname;
+    value = inputs.nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs hostname; };
+      modules = [
+        inputs.sops-nix.nixosModules.sops
+        inputs.home-manager.nixosModules.home-manager
+        inputs.disko.nixosModules.disko
+        ../modules/system
+        ./${hostname}
+      ];
     };
   }) hostDirs)

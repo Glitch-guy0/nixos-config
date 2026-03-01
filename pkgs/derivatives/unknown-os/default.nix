@@ -7,7 +7,8 @@ let
   lib = import ../../../lib nixpkgs.lib;
 in
 lib.mkDerivation {
-  inherit inputs nixpkgs;
+  inherit inputs;
+  nixpkgs = inputs.nixpkgs;
   name = "unknown-os";
   baseHost = "unknown";
 }
