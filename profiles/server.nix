@@ -2,7 +2,7 @@
 # PURPOSE:   Headless, hardened, minimal.
 # SCOPE:     user
 # ============================================================
-{ ... }:
+_:
 {
   imports = [ ./base.nix ];
 }

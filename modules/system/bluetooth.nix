@@ -2,4 +2,4 @@
 # PURPOSE:   Bluetooth system options.
 # SCOPE:     system
 # ============================================================
-{ ... }: { }
+_: { }

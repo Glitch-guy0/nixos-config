@@ -2,4 +2,4 @@
 # PURPOSE:   CUPS printing system options.
 # SCOPE:     system
 # ============================================================
-{ ... }: { }
+_: { }

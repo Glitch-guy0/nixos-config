@@ -2,7 +2,7 @@
 # PURPOSE:   Home tools root.
 # SCOPE:     user
 # ============================================================
-{ ... }:
+_:
 {
   imports = [ ./git.nix ./ssh.nix ./gpg.nix ./direnv.nix ];
 }

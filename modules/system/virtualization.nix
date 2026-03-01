@@ -2,4 +2,4 @@
 # PURPOSE:   Virtualization system options (docker, podman).
 # SCOPE:     system
 # ============================================================
-{ ... }: { }
+_: { }

@@ -2,7 +2,7 @@
 # PURPOSE:   Pure utility functions.
 # SCOPE:     global
 # ============================================================
-{ lib }:
+_:
 {
   # Example utility
   capitalize = str:
