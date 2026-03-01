@@ -6,5 +6,5 @@
 {
   imports = [ ./base.nix ];
   editor.type = "neovim";
-  home.packages = with pkgs; [ gcc gnumake ripgrep jq git ];
+  home.packages = with pkgs; [ ripgrep jq ];
 }
