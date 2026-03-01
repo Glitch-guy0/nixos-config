@@ -1,5 +1,6 @@
 # ============================================================
 # PURPOSE:   Root flake. Declares all inputs. Delegates all output logic to lib/.
+#            It is intentionally bloated with inputs as a centralized dependency manager.
 # SCOPE:     global
 # AGENT:     Add new flake inputs here.
 #            New hosts are auto-detected via hosts/default.nix (no manual wiring).

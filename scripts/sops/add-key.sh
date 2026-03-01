@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 # ============================================================
-# PURPOSE:   Add a new age public key to .sops.yaml and re-encrypt
-#            all secret files accessible by that actor.
-# USAGE:     ./scripts/sops/add-key.sh host unknown age1abc...
-#            ./scripts/sops/add-key.sh user  glitch age1xyz...
-# PREREQS:   yq, sops, age installed (available in devShell)
+# PURPOSE:   Add a new age public key to .sops.yaml and re-encrypt all secret files.
+# SCOPE:     sops
+# DEPENDS:   yq, sops, age
+# EXTENDS:   N/A
+# AGENT:     Run rekey-all.sh after this script modifies .sops.yaml.
+# USAGE:     ./scripts/sops/add-key.sh <host|user> <name> <pubkey>
 # ============================================================
 set -euo pipefail
 SCOPE="$1"   # host | user

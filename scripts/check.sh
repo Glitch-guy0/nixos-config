@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 # ============================================================
 # PURPOSE:   Full lint + format + flake check gate.
-#            Run this before every commit. CI runs it on every PR.
+# SCOPE:     global
+# DEPENDS:   statix, deadnix, nixfmt
+# EXTENDS:   N/A
+# AGENT:     Run this before every commit. CI runs it on every PR.
+# USAGE:     ./scripts/check.sh (from project root)
 # ============================================================
 set -euo pipefail
 echo "── nix flake check ──────────────────"

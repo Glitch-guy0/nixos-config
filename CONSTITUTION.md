@@ -36,9 +36,11 @@
 1. Written twice → goes in `lib/` or `modules/`.
 2. User config never touches system config, and vice versa.
 3. Secrets scoped minimally — host secrets stay host-side, user secrets stay user-side.
-4. Every file has the standard header (Section 11).
+4. Every file (including scripts) has the standard header (Section 11).
 5. Adding a new machine requires **zero changes** to existing hosts.
 6. Adding a new user requires **zero changes** to existing users.
+7. Any change to the system structure or logic **must be reflected in all documentation files** (`USER_GUIDE.md` and the `docs/` folder).
+8. All files and structures **should make navigation easier** and explicitly explain how components (like profiles and file structures) merge.
 
 ---
 
@@ -120,6 +122,18 @@ nixos-config/
 # DEPENDS:   Modules/options this file imports or requires.
 # EXTENDS:   How to add new options or behaviors here.
 # AGENT:     What to know before editing. What to update after.
+# ============================================================
+```
+
+**Every shell script (`.sh`)** opens with:
+```bash
+# ============================================================
+# PURPOSE:   One-line description of what this script does.
+# SCOPE:     host | user | shared | global | sops
+# DEPENDS:   Dependencies or prerequisites.
+# EXTENDS:   N/A
+# AGENT:     What to know before editing. What to update after.
+# USAGE:     How to run this script.
 # ============================================================
 ```
 
