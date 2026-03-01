@@ -2,7 +2,7 @@
 # PURPOSE:   Terminal selector.
 # SCOPE:     user
 # ============================================================
-{ config, lib, pkgs, ... }:
+_:
 {
   imports = [ ./kitty.nix ./wezterm.nix ./foot.nix ];
 }

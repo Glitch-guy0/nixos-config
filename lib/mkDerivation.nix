@@ -6,7 +6,7 @@
 # AGENT:     Derivatives MUST NOT modify hosts/, modules/, or lib/.
 #            All derivative logic lives in pkgs/derivatives/<n>/.
 # ============================================================
-{ inputs, nixpkgs }:
+_ @ { nixpkgs, ... }:
 { name
 , baseHost
 , extraModules ? []

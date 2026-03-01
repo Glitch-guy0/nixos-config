@@ -2,7 +2,7 @@
 # PURPOSE:   Power management configuration.
 # SCOPE:     host
 # ============================================================
-{ config, lib, pkgs, ... }:
+{ lib, ... }:
 {
   # TLP or auto-cpufreq is recommended to prevent Intel battery drain
   services.tlp = {

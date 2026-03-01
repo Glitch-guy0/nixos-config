@@ -3,7 +3,7 @@
 # PURPOSE:   Glitch's minimal profile. Base only.
 # SCOPE:     user
 # ============================================================
-{ lib, pkgs, ... }:
+_:
 {
   imports = [
     ../../../profiles/minimal.nix

@@ -3,7 +3,7 @@
 # PURPOSE:   Glitch's personal profile.
 # SCOPE:     user
 # ============================================================
-{ lib, pkgs, ... }:
+_:
 {
   imports = [
     ../../../profiles/base.nix

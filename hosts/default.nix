@@ -7,7 +7,7 @@ inputs:
 let
   lib = import ../lib inputs.nixpkgs.lib;
   hostsDir = ./.;
-  hostDirs = builtins.attrNames (lib.filterAttrs (n: v: v == "directory") (builtins.readDir hostsDir));
+  hostDirs = builtins.attrNames (lib.filterAttrs ( _: v: v == "directory" ) (builtins.readDir hostsDir));
 in
   builtins.listToAttrs (map (hostname: {
     name = hostname;

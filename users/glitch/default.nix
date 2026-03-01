@@ -2,7 +2,7 @@
 # PURPOSE:   User metadata for Glitch.
 # SCOPE:     user
 # ============================================================
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 {
   home = {
     username = "glitch";

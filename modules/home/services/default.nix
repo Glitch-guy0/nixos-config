@@ -2,7 +2,7 @@
 # PURPOSE:   Home services root.
 # SCOPE:     user
 # ============================================================
-{ config, lib, pkgs, ... }:
+_:
 {
   imports = [ ./syncthing.nix ];
 }

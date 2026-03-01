@@ -3,7 +3,7 @@
 # PURPOSE:   Glitch's full development environment.
 # SCOPE:     user
 # ============================================================
-{ lib, pkgs, ... }:
+_:
 {
   imports = [
     ../../../profiles/developer.nix

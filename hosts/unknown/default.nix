@@ -2,7 +2,7 @@
 # PURPOSE:   Entry point for host "unknown".
 # SCOPE:     host
 # ============================================================
-{ config, lib, pkgs, inputs, hostname, ... }:
+{ pkgs, hostname, ... }:
 {
   imports = [
     ./hardware-configuration.nix

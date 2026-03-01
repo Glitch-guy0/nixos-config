@@ -2,6 +2,6 @@
 # PURPOSE:   Root for custom derivatives.
 # SCOPE:     global
 # ============================================================
-{ pkgs, inputs }:
+_:
 {
 }

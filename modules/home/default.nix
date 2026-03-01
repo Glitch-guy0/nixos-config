@@ -2,7 +2,7 @@
 # PURPOSE:   Home Manager user-space modules root.
 # SCOPE:     user
 # ============================================================
-{ lib, ... }:
+_:
 {
   imports = [
     ./shell

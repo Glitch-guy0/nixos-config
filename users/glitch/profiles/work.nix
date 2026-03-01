@@ -5,7 +5,7 @@
 # DEPENDS:   profiles/developer.nix, modules/home/tools/git.nix
 # EXTENDS:   Add work tools to home.packages. Override options sparingly.
 # ============================================================
-{ lib, pkgs, ... }:
+_:
 {
   imports = [
     ../../../profiles/developer.nix

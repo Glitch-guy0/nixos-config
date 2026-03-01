@@ -2,7 +2,7 @@
 # PURPOSE:   Bootloader, initrd, and kernel parameters for unknown.
 # SCOPE:     host
 # ============================================================
-{ config, lib, pkgs, ... }:
+{ ... }:
 {
   # Use systemd-boot
   boot = {
