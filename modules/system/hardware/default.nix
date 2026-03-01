@@ -2,7 +2,7 @@
 # PURPOSE:   Hardware GPU selector.
 # SCOPE:     system
 # ============================================================
-{ config, lib, pkgs, ... }:
+{ lib, ... }:
 {
   imports = [ ./nvidia.nix ./amd.nix ./intel.nix ];
   options.hardware.gpu = lib.mkOption {

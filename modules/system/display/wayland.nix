@@ -2,4 +2,4 @@
 # PURPOSE:   Shared Wayland setup.
 # SCOPE:     system
 # ============================================================
-{ config, lib, pkgs, ... }: { }
+{ ... }: { }

@@ -2,7 +2,7 @@
 # PURPOSE:   Audio backend selector.
 # SCOPE:     system
 # ============================================================
-{ config, lib, pkgs, ... }:
+{ lib, ... }:
 {
   imports = [ ./pipewire.nix ./pulseaudio.nix ];
   options.audio.backend = lib.mkOption {

@@ -2,7 +2,7 @@
 # PURPOSE:   KDE system setup.
 # SCOPE:     system
 # ============================================================
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 {
   config = lib.mkIf (config.display.server == "kde") {
     services = {

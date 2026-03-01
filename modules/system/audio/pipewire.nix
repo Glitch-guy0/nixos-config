@@ -2,7 +2,7 @@
 # PURPOSE:   Pipewire configuration.
 # SCOPE:     system
 # ============================================================
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 {
   config = lib.mkIf (config.audio.backend == "pipewire") {
     # Replace pulseaudio with pipewire

@@ -2,7 +2,7 @@
 # PURPOSE:   Dev tools: editors, direnv, containers.
 # SCOPE:     user
 # ============================================================
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 {
   imports = [ ./base.nix ];
   editor.type = "neovim";

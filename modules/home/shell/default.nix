@@ -2,7 +2,7 @@
 # PURPOSE:   Shell selector.
 # SCOPE:     user
 # ============================================================
-{ config, lib, pkgs, ... }:
+{ lib, ... }:
 {
   imports = [ ./zsh.nix ./fish.nix ./bash.nix ./nushell.nix ];
   options.shell.type = lib.mkOption {

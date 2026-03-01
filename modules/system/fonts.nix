@@ -2,4 +2,4 @@
 # PURPOSE:   System fonts configuration.
 # SCOPE:     system
 # ============================================================
-{ config, lib, pkgs, ... }: { }
+{ ... }: { }

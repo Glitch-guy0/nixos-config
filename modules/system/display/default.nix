@@ -2,7 +2,7 @@
 # PURPOSE:   Display server and DE selector.
 # SCOPE:     system
 # ============================================================
-{ config, lib, pkgs, ... }:
+{ lib, ... }:
 {
   imports = [ ./wayland.nix ./hyprland.nix ./gnome.nix ./kde.nix ];
   options.display.server = lib.mkOption {

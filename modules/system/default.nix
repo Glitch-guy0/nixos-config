@@ -2,7 +2,7 @@
 # PURPOSE:   System-level NixOS modules root.
 # SCOPE:     system
 # ============================================================
-{ lib, ... }:
+{ ... }:
 {
   imports = [
     ./audio

@@ -2,7 +2,7 @@
 # PURPOSE:   GNOME system setup.
 # SCOPE:     system
 # ============================================================
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 {
   config = lib.mkIf (config.display.server == "gnome") {
     services.xserver = {

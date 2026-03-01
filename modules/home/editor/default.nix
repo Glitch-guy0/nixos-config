@@ -2,7 +2,7 @@
 # PURPOSE:   Editor selector.
 # SCOPE:     user
 # ============================================================
-{ config, lib, pkgs, ... }:
+{ lib, ... }:
 {
   imports = [ ./neovim.nix ./vscode.nix ./helix.nix ];
   options.editor.type = lib.mkOption {

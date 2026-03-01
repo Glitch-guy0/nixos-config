@@ -2,7 +2,7 @@
 # PURPOSE:   Git user configuration.
 # SCOPE:     user
 # ============================================================
-{ config, lib, pkgs, ... }:
+{ ... }:
 {
   programs.git = {
     enable = true;

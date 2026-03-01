@@ -2,4 +2,4 @@
 # PURPOSE:   Networking system options.
 # SCOPE:     system
 # ============================================================
-{ config, lib, pkgs, ... }: { }
+{ ... }: { }

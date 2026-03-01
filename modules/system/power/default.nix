@@ -2,7 +2,7 @@
 # PURPOSE:   Power profile selector.
 # SCOPE:     system
 # ============================================================
-{ config, lib, pkgs, ... }:
+{ lib, ... }:
 {
   imports = [ ./laptop.nix ./desktop.nix ];
   options.power.profile = lib.mkOption {
