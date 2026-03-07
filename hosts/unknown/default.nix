@@ -6,6 +6,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./disko.nix
     ./boot.nix
     ./networking.nix
     ./power.nix

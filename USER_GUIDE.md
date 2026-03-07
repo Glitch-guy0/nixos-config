@@ -28,6 +28,13 @@ Welcome to the **Unknown OS** user guide! This manual is designed for end-users 
 7. [Scripts Guide](#7-scripts-guide)
    - [Available Scripts](#available-scripts)
 8. [Getting Help](#8-getting-help)
+9. [Disk Partitioning with Disko](#9-disk-partitioning-with-disko)
+   - [What is Disko?](#what-is-disko)
+   - [Why Use Disko?](#why-use-disko)
+   - [Disko Configuration Location](#disko-configuration-location)
+   - [Example Disko Configuration](#example-disko-configuration)
+   - [How to Use Disko](#how-to-use-disko)
+   - [Migrating from Manual Partitioning to Disko](#migrating-from-manual-partitioning-to-disko)
 
 ---
 
@@ -37,6 +44,10 @@ Before starting, you must have:
 - A machine booted into a [NixOS Live USB](https://nixos.org/download) or an existing NixOS installation.
 - An active internet connection.
 - Flakes enabled on your current system (standard on newer NixOS installs, or can be passed via command line flags).
+- Disko installed on the live system (if partitioning from a standard NixOS Live USB):
+  ```bash
+  nix-env -iA nixos.disko
+  ```
 
 ---
 
@@ -46,7 +57,13 @@ To make navigating the system easy, this configuration follows a strictly organi
 
 ### Overview
 
-- `hosts/`: Contains system-level configuration, hardware specifics, and bootloader settings for each physical or virtual machine. These define the "bare metal" setup.
+- `hosts/`: Contains system-level configuration:
+  - `hardware-configuration.nix`: Auto-generated hardware scan results
+  - `disko.nix`: Declarative disk partitioning (NEW)
+  - `disko.sh`: Script to run disko for the host (NEW)
+  - `default.nix`: Host entry point
+  - `boot.nix`: Bootloader configuration
+  - etc.
 - `users/`: Contains configurations for individual human users. Each user has their own directory with specific settings, secrets, and configurations.
 - `profiles/`: Contains reusable "capability bundles" (e.g., a gaming setup, a developer setup, a minimal server setup). These bundles are meant to be imported by users to quickly gain capabilities.
 - `modules/`: Contains reusable generic options and implementations. Split into `system` (NixOS) and `home` (Home Manager).
@@ -84,7 +101,7 @@ This repository ships with a pre-configured host named `unknown` (HP Pavilion 14
 # Generate your machine's unique hardware config
 nixos-generate-config --show-hardware-config > hosts/your-hostname/hardware-configuration.nix
 ```
-*You will also need to create a `default.nix` in that folder to select your desktop environment, audio backend, etc. Refer to `hosts/unknown` for an example.*
+*You will also need to create a `default.nix` in that folder to select your desktop environment, audio backend, etc. Refer to `hosts/unknown` for an example. If using Disko, create your `disko.nix` and `disko.sh` locally in `hosts/your-hostname/`.*
 
 ### Generating Age Keys for Secrets
 This setup uses `age` (via `sops-nix`) to encrypt secrets securely. Every machine needs an identity.
@@ -96,11 +113,21 @@ To generate a key for a new host:
 *Take note of the public key output. Add it to `secrets/.sops.yaml` to grant the machine access to its encrypted files.*
 
 ### Installing NixOS
-If you are installing onto formatted disks (e.g., mounted at `/mnt`), deploy the flake:
+
+**Option 1: Using Disko (Recommended for New Installs)**
 ```bash
-sudo nixos-install --flake .#unknown
+# First, run disko to partition/format disks (destroys existing data!)
+sudo ./hosts/your-hostname/disko.sh destroy,format,mount
+
+# Then install NixOS
+sudo nixos-install --flake .#your-hostname
 ```
-*(Replace `unknown` with your new hostname if applicable.)*
+
+**Option 2: Manual Partitioning (Legacy Method)**
+If you prefer to partition manually, format and mount your disks, then run:
+```bash
+sudo nixos-install --flake .#your-hostname
+```
 
 ---
 
@@ -193,3 +220,139 @@ This repository includes several automation scripts in the `scripts/` folder to 
 
 - **End-Users:** If you run into issues switching profiles or rebuilding, double-check your syntax in the `.nix` files you edited, and ensure your age keys are properly configured in `secrets/.sops.yaml`.
 - **Developers & Agents:** If you are looking to add a new reusable module, create a new capability bundle, or refactor the repository structure, read the [CONSTITUTION.md](./CONSTITUTION.md) and the technical guides located in the `docs/` folder.
+
+---
+
+## 9. Disk Partitioning with Disko
+
+This system uses **disko** for declarative disk partitioning. This ensures your disk layout is version-controlled and reproducible.
+
+### What is Disko?
+Disko is a NixOS utility that allows you to define your disk partitioning, formatting, and mounting in Nix code rather than using manual commands like `fdisk` or `parted`.
+
+### Why Use Disko?
+- **Reproducible**: Disk layouts are stored in version control
+- **Idempotent**: Running disko again won't change existing partitions if they match the config
+- **Documentation**: Your config serves as documentation of your disk layout
+- **Automation**: No manual partitioning needed during installs
+
+### Disko Configuration Location
+Disko configurations are stored per host in:
+`hosts/<hostname>/disko.nix`
+
+The helper script to run disko operations is located at:
+`hosts/<hostname>/disko.sh`
+
+### Example Disko Configuration (for `unknown`)
+```nix
+# hosts/unknown/disko.nix
+{
+  # ============================================================
+  # PURPOSE:   Declarative disk partitioning for host 'unknown'.
+  # SCOPE:     host
+  # ============================================================
+  disks ? [ "/dev/nvme0n1" ], ...
+}: {
+  disko.devices = {
+    disk = {
+      main = {
+        device = builtins.elemAt disks 0;
+        type = "disk";
+        content = {
+          type = "table";
+          format = "gpt";
+          partitions = [
+            {
+              name = "boot";
+              size = "1GB";
+              type = "EF00"; # EFI System Partition
+              content = {
+                type = "filesystem";
+                format = "vfat";
+                mountpoint = "/boot";
+                label = "boot";
+                options = [ "fmask=0022" "dmask=0022" ];
+              };
+            }
+            {
+              name = "swap";
+              size = "8GB";
+              type = "8200"; # Linux Swap
+              content = {
+                type = "swap";
+                label = "swap";
+              };
+            }
+            {
+              name = "root";
+              size = "100%"; # Remaining space
+              type = "8300"; # Linux Filesystem
+              content = {
+                type = "filesystem";
+                format = "ext4";
+                mountpoint = "/";
+                label = "nixos";
+              };
+            }
+          ];
+        };
+      };
+    };
+  };
+}
+```
+
+### How to Use Disko
+
+1. **Add Disko to Your Host Configuration**
+Add it to `hosts/<hostname>/default.nix`:
+```nix
+{ pkgs, hostname, ... }:
+{
+  imports = [
+    ./hardware-configuration.nix
+    ./disko.nix  # Add this line
+    # ... other imports
+  ];
+  # ... existing config
+}
+```
+
+2. **Run Disko During Install**
+When installing NixOS, use your host's disko script to partition your disks:
+```bash
+# First, run disko to partition/format disks (destroys existing data!)
+sudo ./hosts/<hostname>/disko.sh destroy,format,mount
+
+# Then install NixOS
+sudo nixos-install --flake .#<hostname>
+```
+
+3. **Generating Hardware Configuration from Disko**
+You can generate a `hardware-configuration.nix` from your disko config:
+```bash
+./hosts/<hostname>/disko.sh mount
+nixos-generate-config --root /mnt --show-hardware-config
+```
+
+**Important Notes:**
+- **Danger**: The destroy mode will erase all data on your disks!
+- **Always test**: You can use dry-run mode or review operations before executing.
+- **Keep config updated**: If you change your disk layout, update the disko config first.
+
+**Troubleshooting:**
+- If disko fails to mount, check that your disk labels or UUIDs match.
+- For encrypted disks, see the disko examples on GitHub.
+- If you get "device not found" errors, verify your disk path (e.g., `/dev/nvme0n1` vs `/dev/sda`).
+
+### Migrating from Manual Partitioning to Disko
+
+If you have an existing installation with manual partitions, you can migrate to disko:
+1. **Create your disko config**: Create `disko.nix` in your host's directory based on the example.
+2. **Match existing partitions**: Update the disko config to perfectly match your current disk layout.
+3. **Create the runner script**: Ensure you have `disko.sh` locally for the host to easily trigger commands.
+4. **Test disko mount**: Run `sudo ./hosts/<hostname>/disko.sh mount` to verify it can mount your existing partitions without destroying data.
+5. **Update hardware-configuration.nix**: Generate a new hardware config using disko if required.
+6. **Rebuild system**: Test the new config with `nixos-rebuild test --flake .#<hostname>` before switching.
+
+**Important**: Always back up your data before making any disk-related changes!

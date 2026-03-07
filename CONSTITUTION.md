@@ -19,6 +19,7 @@
 | Custom derivatives | Yes — first-class | See Section 9 |
 | Flake access | `user@profile` / hostname convention | Clean CLI ergonomics |
 | **Documentation** | Split | `USER_GUIDE.md` for end-users. `docs/` for coding agents/maintainers. |
+| Disk Partitioning | **Declarative (Disko)** | Version-controlled, reproducible disk layouts via `disko` |
 
 ---
 
@@ -194,7 +195,7 @@ Maintenance script?           ──► scripts/<category>/ + document in script
 
 | File | Covers |
 |---|---|
-| `docs/adding-a-host.md` | Dir scaffold → hardware-config → gen-age-key → sops rule → rebuild test |
+| `docs/adding-a-host.md` | Dir scaffold → disko init → hardware-config → gen-age-key → sops rule → rebuild test |
 | `docs/adding-a-user.md` | Dir scaffold → profiles → age key → secrets file → flake output |
 | `docs/adding-a-module.md` | system vs home decision → mkOption pattern → default.nix registration |
 | `docs/adding-a-profile.md` | Capability bundle pattern → composition → user profile import |
@@ -204,4 +205,4 @@ Maintenance script?           ──► scripts/<category>/ + document in script
 
 ---
 
-*Canvas v1.1.0 — hostname: unknown — age-only secrets — user@profile flake keys — intermediate users/flake.nix — scripts section — host config.nix environment selector — split documentation model*
+*Canvas v1.2.0 — hostname: unknown — age-only secrets — user@profile flake keys — intermediate users/flake.nix — scripts section — host config.nix environment selector — split documentation model — declarative disko partitioning*
