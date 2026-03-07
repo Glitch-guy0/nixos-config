@@ -22,23 +22,7 @@
     extraModulePackages = [ ];
   };
 
-  # Note: 512GB PCIe NVMe M.2 SSD
-  fileSystems."/" = {
-    device = "/dev/disk/by-label/nixos";
-    fsType = "ext4";
-  };
-
-  # 1GB boot partition
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/boot";
-    fsType = "vfat";
-    options = [ "fmask=0022" "dmask=0022" ];
-  };
-
-  # 8GB of swap for hibernation
-  swapDevices = [
-    { device = "/dev/disk/by-label/swap"; }
-  ];
+  # Note: File systems and swap are now managed declaratively via disko.nix
 
   # Bang & Olufsen Audio requires SOF firmware
 

@@ -2,7 +2,7 @@
 # PURPOSE:   Networking and firewall configuration for unknown.
 # SCOPE:     host
 # ============================================================
-{ ... }:
+_:
 {
   # HP Pavilion network management
   networking = {

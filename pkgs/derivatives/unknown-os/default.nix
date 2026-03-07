@@ -8,7 +8,7 @@ let
 in
 lib.mkDerivation {
   inherit inputs;
-  nixpkgs = inputs.nixpkgs;
+  inherit (inputs) nixpkgs;
   name = "unknown-os";
   baseHost = "unknown";
 }
