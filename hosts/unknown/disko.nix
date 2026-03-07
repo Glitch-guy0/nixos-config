@@ -15,45 +15,38 @@
         device = builtins.elemAt disks 0;
         type = "disk";
         content = {
-          type = "table";
-          format = "gpt";
-          partitions = [
-            {
-              name = "boot";
-              size = "1GB";
+          type = "gpt";
+          partitions = {
+            boot = {
+              size = "1G";
               type = "EF00"; # EFI System Partition
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                label = "boot";
-                options = [
+                mountOptions = [
                   "fmask=0022"
                   "dmask=0022"
                 ];
               };
-            }
-            {
-              name = "swap";
-              size = "8GB";
+            };
+            swap = {
+              size = "8G";
               type = "8200"; # Linux Swap
               content = {
                 type = "swap";
-                label = "swap";
               };
-            }
-            {
-              name = "root";
-              size = "100%"; # Remaining space
+            };
+            root = {
+              size = "100%";
               type = "8300"; # Linux Filesystem
               content = {
                 type = "filesystem";
                 format = "ext4";
                 mountpoint = "/";
-                label = "nixos";
               };
-            }
-          ];
+            };
+          };
         };
       };
     };
