@@ -20,4 +20,4 @@ if [ ! -f "$DISKO_CONFIG" ]; then
 fi
 
 echo "Running disko $MODE on host $HOST using $DISKO_CONFIG"
-sudo disko "$MODE" "$DISKO_CONFIG"
+sudo disko -m "$MODE" "$DISKO_CONFIG"
