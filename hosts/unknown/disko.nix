@@ -33,6 +33,7 @@
             swap = {
               size = "8G";
               type = "8200"; # Linux Swap
+              label = "swap";
               content = {
                 type = "swap";
               };

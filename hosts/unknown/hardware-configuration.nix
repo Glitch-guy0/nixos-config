@@ -10,7 +10,7 @@
 
   # Intel 11th Gen specific setup
   hardware = {
-    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    cpu.intel.updateMicrocode = lib.mkDefault true;
     enableRedistributableFirmware = true;
     firmware = [ pkgs.sof-firmware ];
   };
