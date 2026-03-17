@@ -20,6 +20,7 @@
             boot = {
               size = "1G";
               type = "EF00"; # EFI System Partition
+              label = "boot";
               content = {
                 type = "filesystem";
                 format = "vfat";
@@ -41,6 +42,7 @@
             root = {
               size = "100%";
               type = "8300"; # Linux Filesystem
+              label = "root";
               content = {
                 type = "filesystem";
                 format = "ext4";

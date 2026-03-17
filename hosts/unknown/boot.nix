@@ -18,6 +18,6 @@ _:
     kernelParams = [ "i915.enable_guc=3" ];
 
     # Hibernation requires passing resume partition UUID/device
-    resumeDevice = "/dev/disk/by-label/swap";
+    resumeDevice = "/dev/disk/by-partlabel/swap";
   };
 }
