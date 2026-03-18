@@ -2,10 +2,11 @@
 # PURPOSE:   Hardware configuration for HP Pavilion 14-dv0054tu.
 # SCOPE:     host
 # ============================================================
-{ config, lib, pkgs, modulesPath, ... }:
+{ config, lib, pkgs, inputs, modulesPath, ... }:
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+    inputs.nixos-hardware.nixosModules.hp-pavilion-14-dv
   ];
 
   # Intel 11th Gen specific setup
@@ -16,13 +17,34 @@
   };
 
   boot = {
-    initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
+    initrd.availableKernelModules = [
+      "xhci_pci"
+      "nvme"
+      "usb_storage"
+      "sd_mod"
+      "part_gpt"
+      "vfat"
+      "ext4"
+    ];
     initrd.kernelModules = [ ];
     kernelModules = [ "kvm-intel" "iwlwifi" ];
     extraModulePackages = [ ];
   };
 
-  # Note: File systems and swap are now managed declaratively via disko.nix
+  fileSystems = {
+    "/boot" = {
+      device = "/dev/disk/by-partlabel/boot";
+      fsType = "vfat";
+    };
+    "/" = {
+      device = "/dev/disk/by-partlabel/root";
+      fsType = "ext4";
+    };
+  };
+
+  swapDevices = [
+    { device = "/dev/disk/by-partlabel/swap"; }
+  ];
 
   # Bang & Olufsen Audio requires SOF firmware
 

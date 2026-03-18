@@ -17,7 +17,7 @@ _:
     # Enable GuC/HuC firmware loading to reduce CPU overhead for Intel Iris Xe
     kernelParams = [ "i915.enable_guc=3" ];
 
-    # Hibernation requires passing resume partition UUID/device
-    resumeDevice = "/dev/disk/by-partlabel/swap";
+    # Hibernation - disabled for now
+    # resumeDevice = "/dev/disk/by-partlabel/swap";
   };
 }
