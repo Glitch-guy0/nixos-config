@@ -37,6 +37,7 @@
               label = "swap";
               content = {
                 type = "swap";
+                extraArgs = [ "--label=swap" ];
               };
             };
             root = {

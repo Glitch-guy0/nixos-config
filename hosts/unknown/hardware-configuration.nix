@@ -31,20 +31,7 @@
     extraModulePackages = [ ];
   };
 
-  fileSystems = {
-    "/boot" = {
-      device = "/dev/disk/by-partlabel/boot";
-      fsType = "vfat";
-    };
-    "/" = {
-      device = "/dev/disk/by-partlabel/root";
-      fsType = "ext4";
-    };
-  };
-
-  swapDevices = [
-    { device = "/dev/disk/by-partlabel/swap"; }
-  ];
+  # Note: File systems and swap are now managed declaratively via disko.nix
 
   # Bang & Olufsen Audio requires SOF firmware
 
