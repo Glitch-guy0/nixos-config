@@ -6,7 +6,6 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    inputs.nixos-hardware.nixosModules.hp-pavilion-14-dv
   ];
 
   # Intel 11th Gen specific setup
