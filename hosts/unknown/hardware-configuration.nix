@@ -30,7 +30,11 @@
     extraModulePackages = [ ];
   };
 
-  # Note: File systems and swap are now managed declaratively via disko.nix
+  swapDevices = [
+    { device = "/dev/disk/by-label/swap"; }
+  ];
+
+  fileSystems = lib.mkForce {};
 
   # Bang & Olufsen Audio requires SOF firmware
 
