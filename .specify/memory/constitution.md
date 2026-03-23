@@ -51,7 +51,17 @@ All Nix-related changes MUST follow a two-agent workflow using rule files locate
 
 #### Agent 1: Planning and Validation (nix-expert)
 
-The nix-expert agent MUST be engaged first for all Nix changes. This agent is responsible for:
+The nix-expert agent MUST be engaged first for all Nix changes. This agent follows a structured Thinking Process to ensure architectural soundness:
+
+- Context Identification: Determine affected layer and scope
+- Architectural Fit: Validate placement in modules/profiles/hosts
+- Dependency & Impact Analysis: Assess ripple effects
+- Best Practices Check: Verify declarative, reproducible, idiomatic Nix
+- Documentation Cross-Check: Align with NixOS manual and nixpkgs conventions
+- Plan Before Action: Generate clear, minimal change strategy
+- Validation Output: Always produce Plan, Validation, Changes, and Notes
+
+This agent is responsible for:
 
 **Planning Phase**
 - Produce a structured plan identifying affected layer (module/profile/host/package)
@@ -73,7 +83,17 @@ The nix-expert agent MUST be engaged first for all Nix changes. This agent is re
 
 #### Agent 2: Documentation (nix-docs-writer)
 
-After nix-expert validation is complete and changes are finalized, the nix-docs-writer agent MUST update documentation. This agent is responsible for:
+After nix-expert validation is complete and changes are finalized, the nix-docs-writer agent MUST update documentation. This agent follows a structured Thinking Process to ensure clarity and completeness:
+
+- Context Understanding: Identify what changed and where
+- Audience Identification: Write for beginner users, contributors, and maintainers
+- Purpose Extraction: Explain why the component exists
+- System Placement: Explain flow from flake.nix through profiles/modules/hosts
+- Simplification: Convert Nix code to human explanation, not raw dumps
+- Consistency Check: Align with existing docs, avoid contradictions
+- Output Structure: Always produce Title, Overview, Details, Usage/Examples, and Notes
+
+This agent is responsible for:
 
 - Updating or creating files in the `/docs` directory
 - Reflecting new behavior accurately with the current system state
@@ -172,36 +192,26 @@ This constitution supersedes all other development practices. Amendments require
 
 ### Version Information
 
-**Version**: 1.0.0 | **Ratified**: 2026-03-23 | **Last Amended**: 2026-03-23
+**Version**: 1.1.0 | **Ratified**: 2026-03-23 | **Last Amended**: 2026-03-23
 
 <!--
-  Sync Impact Report - Initial Constitution Creation
-  ==================================================
-  Version Change: N/A → 1.0.0 (Initial creation)
+  Sync Impact Report - Amendment v1.0.0 → v1.1.0
+  ===============================================
+  Version Change: 1.0.0 → 1.1.0 (MINOR - expanded guidance)
   
-  Added Principles:
-    - I. Modularity First
-    - II. Flake-Based Architecture
-    - III. Declarative by Default
-    - IV. Composability
-    - V. Documentation Synchronization
-    - VI. Separation of Concerns
+  Modified Sections:
+    - Agent 1 (nix-expert): Added Thinking Process reference listing 8-step reasoning sequence
+    - Agent 2 (nix-docs-writer): Added Thinking Process reference listing 10-step reasoning flow
 
-  Added Sections:
-    - Nix Configuration Governance (new mandatory workflow)
-    - Development Workflow (checklist and style standards)
-    - Governance (amendment process and compliance)
+  Added Content:
+    - nix-expert Thinking Process: Context → Fit → Impact → Best Practices → Docs → Plan → Minimal → Output → Sanity
+    - nix-docs-writer Thinking Process: Context → Audience → Purpose → Placement → Simplification → Examples → Consistency → Strategy → Output → Clarity
 
-  Agent File Naming Note:
-    - Constitution references ./agents/rules/nix-docs-writer.md
-    - Existing file is ./agents/rules/technical-writer.md
-    - Consider renaming technical-writer.md to nix-docs-writer.md for consistency
-  
   Templates Requiring Update:
-    - ✅ .specify/templates/plan-template.md (no changes needed - constitutional check section is generic)
-    - ⚠️ .specify/templates/spec-template.md (consider adding Nix-specific requirements section)
-    - ⚠️ .specify/templates/tasks-template.md (consider adding Nix task types)
-    - ⚠️ .specify/templates/checklist-template.md (consider adding Nix validation tasks)
+    - ✅ .specify/templates/plan-template.md (no changes needed)
+    - ⚠️ .specify/templates/spec-template.md (consider Nix-specific requirements section)
+    - ⚠️ .specify/templates/tasks-template.md (consider Nix task types)
+    - ⚠️ .specify/templates/checklist-template.md (consider Nix validation tasks)
 
   Deferred Items:
     - Rename technical-writer.md to nix-docs-writer.md (user decision needed)

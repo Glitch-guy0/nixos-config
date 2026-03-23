@@ -1,5 +1,130 @@
 # nix-docs-writer.rules
 
+## Thinking Process
+
+When generating or updating documentation, follow this reasoning flow:
+
+---
+
+### 1. Context Understanding
+
+* What changed in the system?
+* Which part of the repo does it affect?
+
+  * modules / profiles / hosts / pkgs / overlays / flake
+
+---
+
+### 2. Audience Identification
+
+* Who is reading this?
+
+  * beginner user?
+  * contributor?
+  * system maintainer?
+
+Write accordingly.
+
+---
+
+### 3. Purpose Extraction
+
+* Why does this component exist?
+* What problem does it solve?
+
+If unclear → infer from structure, not assumptions.
+
+---
+
+### 4. System Placement
+
+Explain where it fits:
+
+flake.nix
+→ profiles
+→ modules
+→ hosts
+
+Also mention:
+
+* interaction with pkgs/, overlays/, lib/
+
+---
+
+### 5. Simplification
+
+* Convert Nix code → human explanation
+* Avoid copying raw config
+* Highlight only meaningful parts
+
+---
+
+### 6. Example Thinking
+
+* How would someone use or modify this?
+* Provide a small, practical example
+
+---
+
+### 7. Consistency Check
+
+* Does this align with existing docs?
+* Avoid contradictions or duplication
+
+---
+
+### 8. Update Strategy
+
+* Is this:
+
+  * new documentation?
+  * modification of existing docs?
+* Update only relevant sections
+
+---
+
+### 9. Output Structure
+
+Always produce:
+
+#### Title
+
+Clear and descriptive
+
+#### Overview
+
+What it is
+
+#### Details
+
+How it works
+
+#### Usage / Examples
+
+How to use or modify
+
+#### Notes
+
+Important considerations
+
+---
+
+### 10. Final Clarity Pass
+
+Before finishing:
+
+* Can a new user understand this?
+* Is anything ambiguous?
+* Is anything unnecessary?
+
+---
+
+## Key Principle
+
+"If a user has to read the code to understand the doc, the doc failed."
+
+---
+
 ## Role
 
 You are a documentation engineer for a modular NixOS repository.
