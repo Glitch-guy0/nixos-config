@@ -25,12 +25,12 @@
 
 **Purpose**: Prepare repository for new documentation structure
 
-- [ ] T001 Delete all existing files in `docs/` directory
-- [ ] T002 Delete `USER_GUIDE.md` from repository root
-- [ ] T003 [P] Create `docs/end-user/` directory structure
-- [ ] T004 [P] Create `docs/developer/` directory structure
-- [ ] T005 [P] Create `docs/contributor/` directory structure
-- [ ] T006 Create documentation style guide in `docs/STYLE.md` (headers, callouts, code blocks, tone)
+- [x] T001 Delete all existing files in `docs/` directory
+- [x] T002 Delete `USER_GUIDE.md` from repository root
+- [x] T003 [P] Create `docs/end-user/` directory structure
+- [x] T004 [P] Create `docs/developer/` directory structure
+- [x] T005 [P] Create `docs/contributor/` directory structure
+- [x] T006 Create documentation style guide in `docs/STYLE.md` (headers, callouts, code blocks, tone)
 
 ---
 
@@ -40,11 +40,11 @@
 
 **⚠️ CRITICAL**: No user story documentation work can begin until this phase is complete
 
-- [ ] T007 Create `docs/README.md` with audience-based navigation structure
-- [ ] T008 Define command validation protocol in `docs/VALIDATION.md`
-- [ ] T009 Create user testing protocol template in `docs/TESTING.md`
-- [ ] T010 Setup documentation cross-references and linking conventions
-- [ ] T011 Create documentation checklist template for Phase 1 validation
+- [x] T007 Create `docs/README.md` with audience-based navigation structure
+- [x] T008 Define command validation protocol in `docs/VALIDATION.md`
+- [x] T009 Create user testing protocol template in `docs/TESTING.md`
+- [x] T010 Setup documentation cross-references and linking conventions
+- [x] T011 Create documentation checklist template for Phase 1 validation
 
 **Checkpoint**: Foundation ready - user story documentation can now begin in parallel
 
@@ -58,14 +58,14 @@
 
 ### Implementation for User Story 1
 
-- [ ] T012 [P] [US1] Write `docs/end-user/installation.md` with complete installation steps
-- [ ] T013 [P] [US1] Write `docs/end-user/new-host-setup.md` for creating new host configurations
-- [ ] T014 [P] [US1] Write `docs/end-user/secrets-management.md` for age key generation and secrets
-- [ ] T015 [US1] Test all commands in installation.md (execute and verify)
-- [ ] T016 [US1] Test all commands in new-host-setup.md (execute and verify)
-- [ ] T017 [US1] Test all commands in secrets-management.md (execute and verify)
-- [ ] T018 [US1] Add troubleshooting section for common installation errors
-- [ ] T019 [US1] Add expected output examples for each command
+- [x] T012 [P] [US1] Write `docs/end-user/installation.md` with complete installation steps
+- [x] T013 [P] [US1] Write `docs/end-user/new-host-setup.md` for creating new host configurations
+- [x] T014 [P] [US1] Write `docs/end-user/secrets-management.md` for age key generation and secrets
+- [x] T015 [US1] Test all commands in installation.md (execute and verify)
+- [x] T016 [US1] Test all commands in new-host-setup.md (execute and verify)
+- [x] T017 [US1] Test all commands in secrets-management.md (execute and verify)
+- [x] T018 [US1] Add troubleshooting section for common installation errors
+- [x] T019 [US1] Add expected output examples for each command
 - [ ] T020 [US1] Recruit 3 testers with varying NixOS experience
 - [ ] T021 [US1] Conduct user testing session for installation flow
 - [ ] T022 [US1] Iterate on documentation based on user feedback
@@ -83,12 +83,12 @@
 
 ### Implementation for User Story 2
 
-- [ ] T024 [P] [US2] Write `docs/end-user/profiles-overview.md` with profile comparison
-- [ ] T025 [P] [US2] Write `docs/end-user/profile-switching.md` with switch commands
-- [ ] T026 [US2] Test all commands in profiles-overview.md (execute and verify)
-- [ ] T027 [US2] Test all commands in profile-switching.md (execute and verify)
-- [ ] T028 [US2] Add troubleshooting section for profile switch failures
-- [ ] T029 [US2] Add expected output examples for each command
+- [x] T024 [P] [US2] Write `docs/end-user/profiles-overview.md` with profile comparison
+- [x] T025 [P] [US2] Write `docs/end-user/profile-switching.md` with switch commands
+- [x] T026 [US2] Test all commands in profiles-overview.md (execute and verify)
+- [x] T027 [US2] Test all commands in profile-switching.md (execute and verify)
+- [x] T028 [US2] Add troubleshooting section for profile switch failures
+- [x] T029 [US2] Add expected output examples for each command
 - [ ] T030 [US2] Conduct user testing session for profile switching flow
 - [ ] T031 [US2] Iterate on documentation based on user feedback
 - [ ] T032 [US2] Validate users find answers within 2 minutes (SC-004)
@@ -105,15 +105,15 @@
 
 ### Implementation for User Story 3
 
-- [ ] T033 [P] [US3] Write `docs/developer/adding-host.md` with step-by-step guide
-- [ ] T034 [P] [US3] Write `docs/developer/adding-module.md` with module structure
-- [ ] T035 [P] [US3] Write `docs/developer/adding-profile.md` with profile composition
-- [ ] T036 [P] [US3] Write `docs/contributor/workflows.md` with development workflows
-- [ ] T037 [US3] Test all commands in adding-host.md (execute and verify)
-- [ ] T038 [US3] Test all commands in adding-module.md (execute and verify)
-- [ ] T039 [US3] Test all commands in adding-profile.md (execute and verify)
-- [ ] T040 [US3] Test all commands in workflows.md (execute and verify)
-- [ ] T041 [US3] Add troubleshooting section for common development errors
+- [x] T033 [P] [US3] Write `docs/developer/adding-host.md` with step-by-step guide
+- [x] T034 [P] [US3] Write `docs/developer/adding-module.md` with module structure
+- [x] T035 [P] [US3] Write `docs/developer/adding-profile.md` with profile composition
+- [x] T036 [P] [US3] Write `docs/contributor/workflows.md` with development workflows
+- [x] T037 [US3] Test all commands in adding-host.md (execute and verify)
+- [x] T038 [US3] Test all commands in adding-module.md (execute and verify)
+- [x] T039 [US3] Test all commands in adding-profile.md (execute and verify)
+- [x] T040 [US3] Test all commands in workflows.md (execute and verify)
+- [x] T041 [US3] Add troubleshooting section for common development errors
 - [ ] T042 [US3] Validate new host builds successfully following documentation
 - [ ] T043 [US3] Validate new profile switches successfully following documentation
 
@@ -125,7 +125,7 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T044 [P] Create `docs/SUMMARY.md` with complete table of contents
+- [x] T044 [P] Create `docs/SUMMARY.md` with complete table of contents
 - [ ] T045 [P] Add cross-references between related documentation sections
 - [ ] T046 Documentation consistency review (terminology, formatting, tone)
 - [ ] T047 Validate all links resolve correctly (SC-006)
