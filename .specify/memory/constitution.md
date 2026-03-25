@@ -1,3 +1,26 @@
+<!--
+  Sync Impact Report - Amendment v1.1.0 → v1.2.0
+  ===============================================
+  Version Change: 1.1.0 → 1.2.0 (MINOR - new sections added)
+
+  Added Sections:
+    - VII. Documentation as Source of Truth
+    - Vector Indexing & Retrieval (VectorCode)
+    - Documentation Source of Truth (docs/)
+
+  Modified Sections:
+    - Core Principles: Added Principle VII
+    - Development Workflow: Added VectorCode and docs/ usage patterns
+
+  Templates Requiring Update:
+    - ✅ .specify/templates/plan-template.md (no changes needed - Constitution Check already present)
+    - ✅ .specify/templates/spec-template.md (no changes needed)
+    - ✅ .specify/templates/tasks-template.md (no changes needed)
+
+  Deferred Items:
+    - None
+-->
+
 # NixOS Configuration Constitution
 
 ## Core Principles
@@ -22,6 +45,9 @@ Three distinct layers govern change management:
 - **Architecture/Correctness**: nix-expert agent handles architecture placement, risk identification, and Nix idioms
 - **Documentation/Knowledge**: nix-docs-writer agent handles clarity, structure, and knowledge transfer
 - **Validation**: Both agents must sign off before changes are valid
+
+### VII. Documentation as Source of Truth
+The `docs/` directory is the first-class source of truth for system behavior. Always consult `docs/` before making assumptions about architecture, workflows, or business logic. Treat documentation as the primary reference for understanding the system.
 
 ## Nix Configuration Governance
 
@@ -64,7 +90,7 @@ The nix-expert agent MUST be engaged first for all Nix changes. This agent follo
 This agent is responsible for:
 
 **Planning Phase**
-- Produce a structured plan identifying affected layer (module/profile/host/package)
+- Produce a structured plan identifying affected layer (module/profile/host)
 - Validate architecture placement decisions
 - Identify risks, anti-patterns, or architectural violations
 - Suggest minimal, idiomatic Nix solutions
@@ -156,15 +182,95 @@ If uncertainty exists regarding Nix changes, the nix-expert agent MUST:
 2. Suggest relevant documentation sources for further review
 3. Provide alternative approaches with trade-off analysis
 
+## Vector Indexing & Retrieval (VectorCode)
+
+### Context
+The project uses VectorCode (CLI RAG utility) for semantic search over the codebase.
+
+### Key Commands
+- `vectorcode init`
+- `vectorcode vectorise`
+- `vectorcode query`
+- `vectorcode update`
+- `vectorcode check`
+
+### Constraints & Limitations (MUST ACKNOWLEDGE)
+- Retrieval often returns **only a single most semantically similar result**
+- May produce **false positives**
+- Query quality is **highly dependent on precision**
+- Not reliable for broad or exploratory queries
+
+### Rules
+
+**DO:**
+- ALWAYS treat VectorCode results as **assistive, not authoritative**
+- ALWAYS cross-check retrieved results with:
+  - actual source code
+  - `docs/` directory
+- Prefer **multiple refined queries** over a single broad query
+- Use VectorCode primarily for:
+  - pinpoint lookups
+  - known-symbol searches
+  - targeted debugging context
+
+**DON'T:**
+- NEVER rely on a single query result for critical decisions
+- Do NOT assume retrieved file is the correct one without verification
+- Do NOT use vague queries like "show me auth stuff"
+- Do NOT skip manual verification of retrieved results
+
+### Usage Priority
+When using VectorCode, always verify results against primary sources in this order:
+1. `docs/` directory
+2. actual source code
+3. VectorCode retrieval results (assistive only)
+
+## Documentation Source of Truth (docs/)
+
+### Context
+The `docs/` directory contains project documentation and is a first-class source of truth for system behavior and design decisions.
+
+### Rules
+
+**DO:**
+- ALWAYS consult `docs/` before making assumptions about system behavior
+- Treat `docs/` as:
+  - architectural reference
+  - workflow guide
+  - business logic explanation
+- Prefer `docs/` over inferred understanding from partial code
+- Ensure code changes align with existing documentation
+- Reference `docs/` concepts in explanations and commit messages
+
+**DON'T:**
+- Do NOT make architectural decisions without checking `docs/` first
+- Do NOT silently resolve ambiguity between code and docs - FLAG it explicitly
+- Do NOT introduce behavior that contradicts documented architecture
+- Do NOT write explanations that contradict `docs/` without updating docs first
+
+### Usage Priority Order
+When reasoning about the system, follow this order:
+1. **docs/** - Primary source of truth
+2. **actual source code** - Implementation reality
+3. **VectorCode retrieval results** - Assistive only
+
+### Mismatch Handling
+If there is a mismatch between code and documentation:
+1. FLAG the discrepancy explicitly
+2. DO NOT silently resolve the ambiguity
+3. Update documentation or code to restore consistency
+4. Document the resolution in the commit message
+
 ## Development Workflow
 
 ### Pre-Change Checklist
 
 1. Follow core principles (modularity, declarative, composability)
-2. Add inline documentation standard headers to every `.nix` file
-3. Validate changes with `scripts/check.sh` before committing
-4. Update `.sops.yaml` and re-key secrets if necessary
-5. Record changes in `CHANGELOG.md`
+2. Consult `docs/` for existing patterns and architecture
+3. Add inline documentation standard headers to every `.nix` file
+4. Validate changes with `scripts/check.sh` before committing
+5. Update `.sops.yaml` and re-key secrets if necessary
+6. Record changes in `CHANGELOG.md`
 
 ### Style Standards
 
@@ -172,6 +278,15 @@ If uncertainty exists regarding Nix changes, the nix-expert agent MUST:
 - Keep modules single-purpose
 - Maximum 200 lines per module
 - Clear naming conventions for options and definitions
+
+### Research & Discovery Workflow
+
+When investigating existing functionality or planning changes:
+
+1. **First**: Consult `docs/` directory for architectural context
+2. **Second**: Use VectorCode for targeted searches (known symbols, specific patterns)
+3. **Third**: Manually verify retrieved results against source code
+4. **Always**: Cross-reference multiple sources before making decisions
 
 ## Governance
 
@@ -192,28 +307,4 @@ This constitution supersedes all other development practices. Amendments require
 
 ### Version Information
 
-**Version**: 1.1.0 | **Ratified**: 2026-03-23 | **Last Amended**: 2026-03-23
-
-<!--
-  Sync Impact Report - Amendment v1.0.0 → v1.1.0
-  ===============================================
-  Version Change: 1.0.0 → 1.1.0 (MINOR - expanded guidance)
-  
-  Modified Sections:
-    - Agent 1 (nix-expert): Added Thinking Process reference listing 8-step reasoning sequence
-    - Agent 2 (nix-docs-writer): Added Thinking Process reference listing 10-step reasoning flow
-
-  Added Content:
-    - nix-expert Thinking Process: Context → Fit → Impact → Best Practices → Docs → Plan → Minimal → Output → Sanity
-    - nix-docs-writer Thinking Process: Context → Audience → Purpose → Placement → Simplification → Examples → Consistency → Strategy → Output → Clarity
-
-  Templates Requiring Update:
-    - ✅ .specify/templates/plan-template.md (no changes needed)
-    - ⚠️ .specify/templates/spec-template.md (consider Nix-specific requirements section)
-    - ⚠️ .specify/templates/tasks-template.md (consider Nix task types)
-    - ⚠️ .specify/templates/checklist-template.md (consider Nix validation tasks)
-
-  Deferred Items:
-    - Rename technical-writer.md to nix-docs-writer.md (user decision needed)
-    - Update templates for Nix-specific workflows (optional enhancement)
--->
+**Version**: 1.2.0 | **Ratified**: 2026-03-23 | **Last Amended**: 2026-03-25
