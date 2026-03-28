@@ -28,7 +28,7 @@
 
   # Note: fileSystems and swapDevices are managed declaratively via disko.nix
   fileSystems = lib.mkForce {};
-  swapDevices = lib.mkForce {};
+  swapDevices = [];
 
   # Bang & Olufsen Audio requires SOF firmware
 
