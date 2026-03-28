@@ -13,6 +13,7 @@ HOST="unknown"
 
 # The script assumes it's being run from the project root based on repository guidelines
 DISKO_CONFIG="./hosts/${HOST}/disko.nix"
+HARDWARE_CONFIG="./hosts/${HOST}/hardware-configuration.nix"
 
 if [ ! -f "$DISKO_CONFIG" ]; then
   echo "Error: Disko config not found at $DISKO_CONFIG"
