@@ -17,6 +17,9 @@
       "nvme"
       "usb_storage"
       "sd_mod"
+      "crc16"
+      "crc32c_generic"
+      "libata"
       "vfat"
       "ext4"
     ];
@@ -24,9 +27,6 @@
     kernelModules = [ "kvm-intel" "iwlwifi" ];
     extraModulePackages = [ ];
   };
-
-  # Note: fileSystems and swapDevices are managed declaratively via disko.nix
-  swapDevices = [];
 
   # Bang & Olufsen Audio requires SOF firmware
 

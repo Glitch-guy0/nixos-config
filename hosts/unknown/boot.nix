@@ -17,7 +17,7 @@ _:
     # Enable GuC/HuC firmware loading to reduce CPU overhead for Intel Iris Xe
     kernelParams = [ "i915.enable_guc=3" ];
 
-    # Hibernation
-    resumeDevice = "/dev/disk/by-label/swap";
+    # Hibernation (disabled - causes timeout in stage 1 initrd)
+    # resumeDevice = "/dev/disk/by-label/swap";
   };
 }
