@@ -17,7 +17,6 @@
       "nvme"
       "usb_storage"
       "sd_mod"
-      "part_gpt"
       "vfat"
       "ext4"
     ];
