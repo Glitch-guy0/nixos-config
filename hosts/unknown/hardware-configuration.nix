@@ -4,10 +4,6 @@
 # ============================================================
 { config, lib, pkgs, inputs, modulesPath, ... }:
 {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
-
   # Intel 11th Gen specific setup
   hardware = {
     cpu.intel.updateMicrocode = lib.mkDefault true;
@@ -32,6 +28,7 @@
 
   # Note: fileSystems and swapDevices are managed declaratively via disko.nix
   fileSystems = lib.mkForce {};
+  swapDevices = lib.mkForce {};
 
   # Bang & Olufsen Audio requires SOF firmware
 

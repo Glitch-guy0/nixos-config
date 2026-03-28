@@ -8,7 +8,7 @@
 set -e
 
 # Default to format,mount if no argument is provided
-MODE="${1:-format,mount}"
+MODE="${1:-destroy,format,mount}"
 HOST="unknown"
 
 # The script assumes it's being run from the project root based on repository guidelines
