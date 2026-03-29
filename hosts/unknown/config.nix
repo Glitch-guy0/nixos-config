@@ -12,17 +12,17 @@
 # ============================================================
 _: {
   # ── Display / Desktop Environment ─────────────────────────
-  display.server = "none";    # hyprland | gnome | kde | none
+  display.server = "gnome";    # hyprland | gnome | kde | none
 
   # ── Audio Backend ─────────────────────────────────────────
-  audio.backend  = "none";    # pipewire | pulseaudio | none
+  audio.backend  = "pipewire";    # pipewire | pulseaudio | none
   # Requires SOF firmware for HP Bang & Olufsen (configured in modules/system/audio or hardware profile)
 
   # ── Power Profile ─────────────────────────────────────────
   power.profile  = "laptop";      # laptop | desktop | server
 
   # ── GPU / Hardware Acceleration ───────────────────────────
-  hardware.gpu   = "none";       # nvidia | amd | intel | none
+  hardware.gpu   = "intel";       # nvidia | amd | intel | none
 
   # ── Optional Feature Flags ────────────────────────────────
   # Features are not defined in modules yet

@@ -19,9 +19,9 @@ if [ ! -f "$DISKO_CONFIG" ]; then
 fi
 
 echo "=== Running temporary shell Installing disko ==="
-nix-env --install disko --yes-wipe-all-disks
+nix-env --install disko 
 echo "=== Running disko $MODE on host $HOST ==="
-sudo disko -m "$MODE" "$DISKO_CONFIG"
+sudo disko -m "$MODE" "$DISKO_CONFIG" --yes-wipe-all-disks
 
 # Generate hardware configuration and update
 echo "=== Generating hardware configuration ==="
