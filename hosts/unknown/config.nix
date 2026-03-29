@@ -26,4 +26,8 @@ _: {
 
   # ── Optional Feature Flags ────────────────────────────────
   # Features are not defined in modules yet
+  
+  # ── User Configuration ───────────────────────────────────
+  # Users to create on this host
+  defaultUsers = [ "unknown" ];
 }

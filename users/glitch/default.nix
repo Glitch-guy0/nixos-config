@@ -7,6 +7,7 @@
   home = {
     username = "glitch";
     homeDirectory = "/home/glitch";
+    initialPassword = "user";
     packages = with pkgs; [
       brave
       zed-editor
