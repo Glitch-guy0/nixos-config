@@ -29,5 +29,5 @@ _: {
   
   # ── User Configuration ───────────────────────────────────
   # Users to create on this host
-  defaultUsers = [ "unknown" ];
+  defaultUsers = [ "glitch" ];
 }
