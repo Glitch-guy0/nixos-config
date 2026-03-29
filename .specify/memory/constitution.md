@@ -1,21 +1,32 @@
 <!--
-  Sync Impact Report - Amendment v1.1.0 → v1.2.0
+  Sync Impact Report - Amendment v1.2.0 → v1.3.0
   ===============================================
-  Version Change: 1.1.0 → 1.2.0 (MINOR - new sections added)
+  Version Change: 1.2.0 → v1.3.0 (MINOR - new sections added)
 
   Added Sections:
-    - VII. Documentation as Source of Truth
-    - Vector Indexing & Retrieval (VectorCode)
-    - Documentation Source of Truth (docs/)
+    - VIII. Defense in Depth (Security)
+    - IX. Zero Trust (Security)
+    - X. Secrets Management (Security)
+    - XI. Security by Design (Security)
+    - XII. Validation Before Apply (Testing)
+    - XIII. Test Pyramid for Configuration (Testing)
+    - XIV. Reproducibility Verification (Testing)
+    - XV. Incremental Change Testing (Testing)
+    - Security Principles section
+    - Testing Principles section
 
   Modified Sections:
-    - Core Principles: Added Principle VII
-    - Development Workflow: Added VectorCode and docs/ usage patterns
+    - Core Principles: Added Principles VIII-XV (Security & Testing)
+    - Development Workflow: Preceded by Security and Testing sections
 
   Templates Requiring Update:
-    - ✅ .specify/templates/plan-template.md (no changes needed - Constitution Check already present)
+    - ✅ .specify/templates/plan-template.md (Constitution Check already covers security/testing)
     - ✅ .specify/templates/spec-template.md (no changes needed)
     - ✅ .specify/templates/tasks-template.md (no changes needed)
+
+  Agent Files Referenced:
+    - ./agents/skills/security-agent.md
+    - ./agents/skills/testing-agent.md
 
   Deferred Items:
     - None
@@ -261,6 +272,80 @@ If there is a mismatch between code and documentation:
 3. Update documentation or code to restore consistency
 4. Document the resolution in the commit message
 
+## Security Principles
+
+### Context
+Security is a first-class concern in system configuration. All changes must be evaluated for security implications.
+
+### Core Security Principles
+
+**VIII. Defense in Depth**
+- Multiple layers of security controls must be present
+- No single point of failure for security controls
+- Layer configuration across modules, profiles, and hosts
+
+**IX. Zero Trust**
+- Never trust user inputs, external data, or network requests without verification
+- Validate all Nix expressions for injection risks
+- Verify integrity of flake inputs and external sources
+
+**X. Secrets Management**
+- All secrets must be managed via SOPS with age encryption
+- No hardcoded credentials or API keys in configuration files
+- Secrets rotation procedures must be documented
+
+**XI. Security by Design**
+- Security considerations must be part of planning, not afterthoughts
+- Threat modeling required for new modules and profiles
+- Risk assessment documented for significant changes
+
+### Security Compliance
+
+For each change, identify:
+- Trust boundaries affected
+- Data classification involved
+- Attack surface implications
+- Required security controls
+
+**Agent Reference:** `./agents/skills/security-agent.md`
+
+## Testing Principles
+
+### Context
+Configuration changes must be validated to ensure correctness, reproducibility, and expected behavior.
+
+### Core Testing Principles
+
+**XII. Validation Before Apply**
+- All changes MUST be validated with `nix flake check` and `nixos-rebuild` dry-run
+- Module imports must form a valid DAG (no circular dependencies)
+- flake.nix structure integrity must be verified
+
+**XIII. Test Pyramid for Configuration**
+- Unit validation: Individual option syntax and type checking
+- Integration validation: Module composition and profile combinations
+- System validation: Full host builds via `nixos-rebuild build`
+
+**XIV. Reproducibility Verification**
+- Changes must produce identical outputs across builds
+- No impure evaluation (no environment-dependent behavior)
+- All runtime dependencies declared in buildInputs
+
+**XV. Incremental Change Testing**
+- Test changes in isolation before combining
+- Verify no regression in dependent modules
+- Cross-platform testing for multi-system flakes
+
+### Testing Checklist
+
+- [ ] `nix flake check` passes
+- [ ] `nix flake eval` validates Nix expressions
+- [ ] `nixos-rebuild dry-run` succeeds for affected hosts
+- [ ] No circular imports in module structure
+- [ ] flake.lock updated if inputs changed
+
+**Agent Reference:** `./agents/skills/testing-agent.md`
+
 ## Development Workflow
 
 ### Pre-Change Checklist
@@ -307,4 +392,4 @@ This constitution supersedes all other development practices. Amendments require
 
 ### Version Information
 
-**Version**: 1.2.0 | **Ratified**: 2026-03-23 | **Last Amended**: 2026-03-25
+**Version**: 1.3.0 | **Ratified**: 2026-03-23 | **Last Amended**: 2026-03-29
