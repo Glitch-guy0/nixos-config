@@ -80,9 +80,14 @@ If your hardware matches an existing host in `hosts/`:
 # Navigate to project root
 cd nixos-config
 
-# Run disko to partition disks (DESTROYS DATA!)
-sudo ./hosts/<hostname>/disko.sh destroy,format,mount
+# Run disko to partition disks AND generate hardware config (DESTROYS DATA!)
+sudo ./hosts/<hostname>/disko.sh format,mount
 ```
+
+This script will:
+1. Partition the disk according to the disko configuration
+2. Generate `hardware-configuration.nix` automatically using `nixos-generate-config --show-hardware-config --root /mnt`
+3. Save the generated config to `hosts/<hostname>/hardware-configuration.nix`
 
 Replace `<hostname>` with your host name (e.g., `unknown`).
 
@@ -90,25 +95,19 @@ Replace `<hostname>` with your host name (e.g., `unknown`).
 
 If you need to create a new host:
 
-1. **Generate hardware configuration**:
+1. **Create disko configuration** in `hosts/<your-hostname>/disko.nix`
+2. **Run disko** (this also generates hardware-configuration.nix automatically):
 
 ```bash
-# Mount target disk manually first
-mount /dev/disk/by-label/nixos /mnt
-
-# Generate hardware config
-nixos-generate-config --show-hardware-config > hosts/<your-hostname>/hardware-configuration.nix
+# Run disko - formats disk AND generates hardware config
+sudo ./hosts/<your-hostname>/disko.sh format,mount
 ```
 
-2. **Create disko configuration** in `hosts/<your-hostname>/disko.nix`
-
-3. **Run disko**:
-
-```bash
-sudo ./hosts/<your-hostname>/disko.sh destroy,format,mount
-```
+> **Note**: The `disko.sh` script automatically generates `hardware-configuration.nix` using `nixos-generate-config` and saves it to `hosts/<your-hostname>/hardware-configuration.nix`.
 
 > **Warning**: `destroy` mode erases all data on the target disk!
+
+> **Note**: Disko partitioning and NixOS configuration are **separate workflows**. The `disko.sh` script handles disk partitioning and automatically generates `hardware-configuration.nix`. The NixOS configuration (in `configuration.nix`) is applied separately during `nixos-install`.
 
 ---
 
