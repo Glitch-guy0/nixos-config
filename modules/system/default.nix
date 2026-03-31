@@ -16,5 +16,6 @@ _:
     ./fonts.nix
     ./printing.nix
     ./bluetooth.nix
+    ./nix.nix
   ];
 }
