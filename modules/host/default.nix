@@ -8,7 +8,7 @@ let
   
   getUserConfig = username: 
     let
-      userFile = /Users/prajwal/Documents/nixos-config/users/${username}/default.nix;
+      userFile = ./users/${username}/default.nix;
     in
       if builtins.pathExists userFile then 
         import userFile { inherit pkgs; }

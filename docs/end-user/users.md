@@ -9,6 +9,8 @@ This document describes the user configuration system in this NixOS configuratio
 
 ## Quick Start
 
+> **Note**: All file paths in this documentation are relative to the project root (the repository root directory).
+
 ### 1. Create User Configuration
 
 Create `users/<username>/default.nix`:

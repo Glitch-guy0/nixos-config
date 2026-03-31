@@ -10,6 +10,7 @@
 ### Session 2026-03-30
 
 - Q: Which specific file types/locations should have alice/bob references removed vs. preserved? → A: Remove from: user-facing docs (docs/), README files, example configs. Preserve: specs/ directory (historical feature records), CHANGELOG.md, git history
+- Q: Should file paths in documentation and configurations be documented as relative to project root? → A: Relative to project root - all file paths explicitly state they are relative to the repo root (e.g., users/alice/default.nix means /Users/prajwal/Documents/nixos-config/users/alice/default.nix)
 - Q: What should explicitly remain unchanged to avoid unintended modifications? → A: Out of scope: Creating new users beyond "glitch", modifying other hosts (only hosts/unknown/), changing existing module code in modules/, altering flake.nix structure
 - Q: When orphaned alice/bob references are discovered outside the known locations, what's the default action? → A: Search entire repo, remove all found references in .nix files, document locations in a cleanup log file, preserve in historical specs only
 
@@ -80,6 +81,7 @@ As a system administrator, I want the existing user "glitch" to be properly conf
 - **Host Configuration**: Location in hosts/<hostname>/ containing host-specific settings including defaultUsers list
 - **defaultUsers**: List of usernames that should be created on a specific host
 - **User Profile**: Individual configuration file in users/<username>/profiles/<profile>.nix
+- **Path Convention**: All file paths are relative to the project root (e.g., users/glitch/default.nix refers to the file at `<repo-root>/users/glitch/default.nix`)
 
 ## Success Criteria
 
