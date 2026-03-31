@@ -6,5 +6,5 @@
 {
   imports = [ ./base.nix ];
   editor.type = "neovim";
-  home.packages = with pkgs; [ ripgrep jq ];
+  home.packages = with pkgs; [ ripgrep jq brave ];
 }

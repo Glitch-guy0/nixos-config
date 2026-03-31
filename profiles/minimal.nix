@@ -4,5 +4,5 @@
 # ============================================================
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [ vim wget ];
+  home.packages = with pkgs; [ vim curl brave ];
 }

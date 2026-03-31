@@ -18,7 +18,7 @@ let
   createUsersConfig = lib.foldl' (acc: username:
     let
       userConfig = getUserConfig username;
-      password = if userConfig ? initialPassword then userConfig.initialPassword else "";
+      password = if userConfig.home ? initialPassword then userConfig.home.initialPassword else "";
     in
       acc // {
         ${username} = {

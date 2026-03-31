@@ -5,5 +5,5 @@
 { pkgs, ... }:
 {
   shell.type = "bash";
-  home.packages = with pkgs; [ wget curl btop tree git ];
+  home.packages = with pkgs; [ curl btop tree git ];
 }
