@@ -25,7 +25,7 @@ let
           isNormalUser = true;
           description = "${username}";
           password = password;
-          extraGroups = if userConfig ? extraGroups then userConfig.extraGroups else [ ];
+          extraGroups = if userConfig.home ? extraGroups then userConfig.home.extraGroups else [ ];
         };
       }
   ) { };

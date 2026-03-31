@@ -10,6 +10,7 @@
     username = "glitch";
     homeDirectory = "/home/glitch";
     initialPassword = "user";
+    extraGroups = [ "wheel" "docker" ]
     packages = with pkgs; [
       brave
       zed-editor
