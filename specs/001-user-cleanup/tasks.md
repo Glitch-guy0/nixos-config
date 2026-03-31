@@ -8,12 +8,12 @@ This file contains executable tasks for the user configuration cleanup feature. 
 
 ## Phase 1: Setup
 
-- [ ] T001 Verify prerequisites: Check that flake.nix structure is intact
+- [X] T001 Verify prerequisites: Check that flake.nix structure is intact
 
 ## Phase 2: Foundational
 
-- [ ] T002 Verify current state: Confirm alice/bob are not in users/ directory but are referenced in hosts/unknown/config.nix
-- [ ] T003 Verify target state: Confirm glitch user exists in users/glitch/default.nix
+- [X] T002 Verify current state: Confirm alice/bob are not in users/ directory but are referenced in hosts/unknown/config.nix
+- [X] T003 Verify target state: Confirm glitch user exists in users/glitch/default.nix
 
 ## Phase 3: User Story 1 - Clean Up Removed Users (P1)
 
@@ -23,9 +23,9 @@ This file contains executable tasks for the user configuration cleanup feature. 
 
 **Implementation Tasks**:
 
-- [ ] T004 [P] [US1] Update hosts/unknown/config.nix: Change defaultUsers from ["alice" "bob"] to ["glitch"]
-- [ ] T005 [US1] Validate: Run `nix flake check` to verify Nix expressions are valid
-- [ ] T006 [US1] Validate: Run `nixos-rebuild build --flake .#unknown` to verify host builds successfully
+- [X] T004 [P] [US1] Update hosts/unknown/config.nix: Change defaultUsers from ["alice" "bob"] to ["glitch"]
+- [X] T005 [US1] Validate: Run `nix flake check` to verify Nix expressions are valid
+- [X] T006 [US1] Validate: Run `nixos-rebuild build --flake .#unknown` to verify host builds successfully
 
 ## Phase 4: User Story 2 - Update Existing User Configuration (P2)
 
@@ -35,13 +35,13 @@ This file contains executable tasks for the user configuration cleanup feature. 
 
 **Implementation Tasks**:
 
-- [ ] T007 [P] [US2] Update docs/end-user/users.md: Replace alice/bob examples with glitch in user configuration examples
-- [ ] T008 [US2] Validate: Verify docs/end-user/users.md shows correct current state
+- [X] T007 [P] [US2] Update docs/end-user/users.md: Replace alice/bob examples with glitch in user configuration examples
+- [X] T008 [US2] Validate: Verify docs/end-user/users.md shows correct current state
 
 ## Phase 5: Polish & Cross-Cutting Concerns
 
-- [ ] T009 Create cleanup log documenting all locations where alice/bob references were removed
-- [ ] T010 Final validation: Run full `nix flake check` to ensure no regressions
+- [X] T009 Create cleanup log documenting all locations where alice/bob references were removed
+- [X] T010 Final validation: Run full `nix flake check` to ensure no regressions
 
 ---
 

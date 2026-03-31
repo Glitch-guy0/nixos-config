@@ -29,7 +29,7 @@ In `hosts/<hostname>/config.nix`:
 
 ```nix
 {
-  defaultUsers = [ "alice" "bob" ];
+  defaultUsers = [ "glitch" ];
 }
 ```
 
@@ -52,10 +52,10 @@ nixos-rebuild switch --flake .#hostname
 defaultUsers = [];
 
 # Single user
-defaultUsers = [ "alice" ];
+defaultUsers = [ "glitch" ];
 
 # Multiple users
-defaultUsers = [ "alice" "bob" "charlie" ];
+defaultUsers = [ "glitch" "admin" "deploy" ];
 ```
 
 ## User Configuration Options
@@ -90,17 +90,17 @@ defaultUsers = [ "alice" "bob" "charlie" ];
 ### Shared User Across Multiple Hosts
 
 ```nix
-# users/alice/default.nix (single source of truth)
+# users/glitch/default.nix (single source of truth)
 {
-  initialPassword = "AliceTemp123!";
+  initialPassword = "GlitchTemp123!";
   extraGroups = [ "wheel" ];
 }
 
 # hosts/desktop/config.nix
-defaultUsers = [ "alice" ];
+defaultUsers = [ "glitch" ];
 
 # hosts/laptop/config.nix
-defaultUsers = [ "alice" ];
+defaultUsers = [ "glitch" ];
 ```
 
 ### Host-Specific Users
@@ -110,7 +110,7 @@ defaultUsers = [ "alice" ];
 defaultUsers = [ "admin" "deploy" ];
 
 # hosts/workstation/config.nix
-defaultUsers = [ "alice" ];
+defaultUsers = [ "glitch" ];
 ```
 
 ## Troubleshooting
