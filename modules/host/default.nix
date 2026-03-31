@@ -8,7 +8,7 @@ let
 
   getUserConfig = username:
     let
-      userFile = ./users/${username}/default.nix;
+      userFile = ../../users/${username}/default.nix;
     in
       if builtins.pathExists userFile then
         import userFile { inherit pkgs; }
@@ -41,5 +41,24 @@ in
 
   config = {
     users.users = lib.mkIf (config.defaultUsers != [ ]) (createUsersConfig config.defaultUsers);
+
+    home-manager.users = lib.foldl' (acc: username:
+      let
+        userConfig  = getUserConfig username;
+        profileName = userConfig.defaultProfile or "minimal";
+        userProfile = ../../users/${username}/profiles/${profileName}.nix;
+      in
+        acc // {
+          ${username} = { pkgs, ... }: {
+            imports = [
+              inputs.sops-nix.homeManagerModules.sops
+              ../../modules/home
+              userProfile
+            ];
+            home.username      = username;
+            home.homeDirectory = userConfig.home.homeDirectory;
+          };
+        }
+    ) { } config.defaultUsers;
   };
 }

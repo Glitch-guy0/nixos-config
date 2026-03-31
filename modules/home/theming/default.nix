@@ -2,7 +2,7 @@
 # PURPOSE:   Theming configuration selector.
 # SCOPE:     user
 # ============================================================
-_:
+{ lib, ... }:
 {
   imports = [ ./stylix.nix ];
   options.theme.scheme = lib.mkOption { type = lib.types.str; default = "dracula"; };

@@ -4,6 +4,8 @@
 # ============================================================
 { pkgs, ... }:
 {
+  defaultProfile = "minimal";
+
   home = {
     username = "glitch";
     homeDirectory = "/home/glitch";
